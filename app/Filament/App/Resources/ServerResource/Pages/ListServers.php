@@ -155,7 +155,7 @@ class ListServers extends ListRecords
             ])
             ->emptyStateIcon('tabler-brand-docker')
             ->emptyStateDescription('')
-            ->emptyStateHeading(fn () => $this->activeTab === 'my' ? 'Sie besitzen keine Server.' : 'Sie haben keinen Zugriff auf andere Server.')
+            ->emptyStateHeading(fn () => $this->activeTab === 'my' ? 'Sie besitzen keine Server.' : 'Sie haben keine Berechtigungen für andere Server.')
             ->persistFiltersInSession()
             ->filters([
                 SelectFilter::make('egg')
