@@ -182,15 +182,15 @@ class ListServers extends ListRecords
         $other = (clone $all)->whereNot('owner_id', auth()->user()->id);
 
         return [
-            'my' => Tab::make('My Servers')
+            'my' => Tab::make('Meine Server')
                 ->badge(fn () => $my->count())
                 ->modifyQueryUsing(fn () => $my),
 
-            'other' => Tab::make('Others\' Servers')
+            'other' => Tab::make('Andere Server')
                 ->badge(fn () => $other->count())
                 ->modifyQueryUsing(fn () => $other),
 
-            'all' => Tab::make('All Servers')
+            'all' => Tab::make('Alle Server')
                 ->badge($all->count()),
         ];
     }
