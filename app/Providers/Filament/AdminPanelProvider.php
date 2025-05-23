@@ -33,7 +33,7 @@ class AdminPanelProvider extends PanelProvider
             ->spa()
             ->databaseNotifications()
             ->breadcrumbs(false)
-            ->brandName(config('app.name', 'Pelican'))
+            ->brandName(config('app.name', 'Germando'))
             ->brandLogo(config('app.logo'))
             ->brandLogoHeight('2rem')
             ->favicon(config('app.favicon', '/pelican.ico'))
