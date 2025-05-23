@@ -12,13 +12,13 @@ class UpgradeCommand extends Command
     protected const DEFAULT_URL = 'https://github.com/pelican-dev/panel/releases/%s/panel.tar.gz';
 
     protected $signature = 'p:upgrade
-        {--user= : The user that PHP runs under. All files will be owned by this user.}
-        {--group= : The group that PHP runs under. All files will be owned by this group.}
-        {--url= : The specific archive to download.}
-        {--release= : A specific version to download from GitHub. Leave blank to use latest.}
-        {--skip-download : If set no archive will be downloaded.}';
+        {--user= : Der Benutzer, unter dem PHP ausgeführt wird. Alle Dateien werden von diesem Benutzer besessen.}
+        {--group= : Die Gruppe, unter der PHP ausgeführt wird. Alle Dateien werden von dieser Gruppe besessen.}
+        {--url= : Die spezifische Archive zu downloaden.}
+        {--release= : Eine bestimmte Version zu downloaden von GitHub. Lassen Sie leer, um die neueste Version zu verwenden.}
+        {--skip-download : Wenn festgelegt, wird kein Archiv heruntergeladen.}';
 
-    protected $description = 'Downloads a new archive from GitHub and then executes the normal upgrade commands.';
+    protected $description = 'Lädt eine neue Archive von GitHub herunter und führt dann die normalen Upgrade-Befehle aus.';
 
     /**
      * Executes an upgrade command which will run through all of our standard

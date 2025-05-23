@@ -12,13 +12,13 @@ class RedisSetupCommand extends Command
     use EnvironmentWriterTrait;
     use RequestRedisSettingsTrait;
 
-    protected $description = 'Configure the Panel to use Redis as cache, queue and session driver.';
+    protected $description = 'Konfiguriere das Panel, um Redis als Cache, Warteschlange und Sitzungsdriver zu verwenden.';
 
     protected $signature = 'p:redis:setup
-                            {--redis-host= : Redis host to use for connections.}
-                            {--redis-user= : User used to connect to redis.}
-                            {--redis-pass= : Password used to connect to redis.}
-                            {--redis-port= : Port to connect to redis over.}';
+                            {--redis-host= : Redis-Host, den Sie verwenden möchten.}
+                            {--redis-user= : Benutzer, der zum Verbinden mit Redis verwendet wird.}
+                            {--redis-pass= : Passwort, das zum Verbinden mit Redis verwendet wird.}
+                            {--redis-port= : Port, über den Sie mit Redis verbinden möchten.}';
 
     /**
      * RedisSetupCommand constructor.

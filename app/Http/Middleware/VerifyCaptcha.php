@@ -30,7 +30,7 @@ readonly class VerifyCaptcha
 
             event(new FailedCaptcha($request->ip(), $response['message'] ?? null));
 
-            throw new HttpException(Response::HTTP_BAD_REQUEST, "Failed to validate {$captchaProvider->getId()} captcha data.");
+            throw new HttpException(Response::HTTP_BAD_REQUEST, "Validierung der {$captchaProvider->getId()} Captcha-Daten fehlgeschlagen.");
         }
 
         // No captcha enabled

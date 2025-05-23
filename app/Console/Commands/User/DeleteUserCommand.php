@@ -8,14 +8,14 @@ use Illuminate\Console\Command;
 
 class DeleteUserCommand extends Command
 {
-    protected $description = 'Deletes a user from the Panel if no servers are attached to their account.';
+    protected $description = 'Löscht einen Benutzer aus dem Panel, wenn keine Server an ihre Konten angehängt sind.';
 
     protected $signature = 'p:user:delete {--user=}';
 
     public function handle(): int
     {
         $search = $this->option('user') ?? $this->ask(trans('command/messages.user.search_users'));
-        Assert::notEmpty($search, 'Search term should not be empty.');
+        Assert::notEmpty($search, 'Suchbegriff sollte nicht leer sein.');
 
         $results = User::query()
             ->where('id', 'LIKE', "$search%")

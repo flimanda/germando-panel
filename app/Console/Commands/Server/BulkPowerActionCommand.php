@@ -13,11 +13,11 @@ use Exception;
 class BulkPowerActionCommand extends Command
 {
     protected $signature = 'p:server:bulk-power
-                            {action : The action to perform (start, stop, restart, kill)}
-                            {--servers= : A comma separated list of servers.}
-                            {--nodes= : A comma separated list of nodes.}';
+                            {action : Die Aktion, die ausgeführt werden soll (start, stop, restart, kill)}
+                            {--servers= : Eine durch Kommas getrennte Liste von Servern.}
+                            {--nodes= : Eine durch Kommas getrennte Liste von Knoten.}';
 
-    protected $description = 'Perform bulk power management on large groupings of servers or nodes at once.';
+    protected $description = 'Führt eine große Gruppe von Servern oder Netzknoten gleichzeitig aus.';
 
     public function handle(DaemonPowerRepository $powerRepository, ValidatorFactory $validator): void
     {

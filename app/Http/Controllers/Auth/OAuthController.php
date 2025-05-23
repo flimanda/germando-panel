@@ -49,7 +49,7 @@ class OAuthController extends Controller
             report($request->get('error_description') ?? $request->get('error'));
 
             Notification::make()
-                ->title('Something went wrong')
+                ->title('Etwas ist schief gelaufen')
                 ->body($request->get('error'))
                 ->danger()
                 ->persistent()
@@ -77,7 +77,7 @@ class OAuthController extends Controller
         } catch (Exception) {
             // No user found - redirect to normal login
             Notification::make()
-                ->title('No linked User found')
+                ->title('Kein verknüpftes Benutzerkonto gefunden')
                 ->danger()
                 ->persistent()
                 ->send();

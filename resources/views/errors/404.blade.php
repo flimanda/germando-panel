@@ -1,7 +1,7 @@
 @props([
 'code' => '404',
-'title' => 'Not found',
-'subtitle' => $exception->getMessage() ?? 'The requested resource was not found.',
+'title' => 'Nicht gefunden',
+'subtitle' => $exception->getMessage() ?? 'Die angeforderte Ressource wurde nicht gefunden.',
 'icon' => 'tabler-zoom-question'
 ])
 

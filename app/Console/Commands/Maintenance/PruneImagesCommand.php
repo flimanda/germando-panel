@@ -11,7 +11,7 @@ class PruneImagesCommand extends Command
 {
     protected $signature = 'p:maintenance:prune-images {node?}';
 
-    protected $description = 'Clean up all dangling docker images to clear up disk space.';
+    protected $description = 'Entfernt alle unbezogenen Docker-Images, um den Festplattenspeicher freizugeben.';
 
     public function handle(): void
     {

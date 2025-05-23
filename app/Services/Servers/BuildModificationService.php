@@ -38,7 +38,7 @@ class BuildModificationService
             if (isset($data['allocation_id']) && $data['allocation_id'] != $server->allocation_id) {
                 $existingAllocation = $server->allocations()->findOrFail($data['allocation_id']);
 
-                throw_unless($existingAllocation, new DisplayException('The requested default allocation is not currently assigned to this server.'));
+                throw_unless($existingAllocation, new DisplayException('Die angeforderte Standard-Zuordnung ist derzeit nicht diesem Server zugeordnet.'));
             }
 
             if (!isset($data['oom_killer']) && isset($data['oom_disabled'])) {
@@ -115,7 +115,7 @@ class BuildModificationService
                 // will throw an exception back.
                 if ($allocation === ($data['allocation_id'] ?? $server->allocation_id)) {
                     if (empty($freshlyAllocated)) {
-                        throw new DisplayException('You are attempting to delete the default allocation for this server but there is no fallback allocation to use.');
+                        throw new DisplayException('Du versuchst, die Standard-Zuordnung für diesen Server zu löschen, aber es gibt keine Fallback-Zuordnung, die verwendet werden könnte.');
                     }
 
                     // Update the default allocation to be the first allocation that we are creating.

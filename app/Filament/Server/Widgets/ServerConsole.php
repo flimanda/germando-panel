@@ -47,7 +47,7 @@ class ServerConsole extends Widget
     protected function getToken(): string
     {
         if (!$this->user || !$this->server || $this->user->cannot(Permission::ACTION_WEBSOCKET_CONNECT, $this->server)) {
-            throw new HttpForbiddenException('You do not have permission to connect to this server\'s websocket.');
+            throw new HttpForbiddenException('Sie haben keine Berechtigung, um eine Verbindung zu diesem Server-WebSocket herzustellen.');
         }
 
         $permissions = $this->getUserPermissionsService->handle($this->server, $this->user);
@@ -133,8 +133,8 @@ class ServerConsole extends Widget
     public function websocketError(): void
     {
         AlertBanner::make('websocket_error')
-            ->title('Could not connect to websocket!')
-            ->body('Check your browser console for more details.')
+            ->title('Konnte keine Verbindung zum WebSocket herstellen!')
+            ->body('Überprüfen Sie Ihre Browser-Konsole für weitere Details.')
             ->danger()
             ->send();
     }

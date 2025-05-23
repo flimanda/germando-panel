@@ -16,12 +16,12 @@ class SubUserAddedListener
         $event->subuser->loadMissing('user');
 
         Notification::make()
-            ->title('Added to Server')
-            ->body('You have been added as a subuser to ' . $event->subuser->server->name . '.')
+            ->title('Zum Server hinzugefügt')
+            ->body('Sie wurden als Subbenutzer zu ' . $event->subuser->server->name . ' hinzugefügt.')
             ->actions([
                 Action::make('view')
                     ->button()
-                    ->label('Open Server')
+                    ->label('Server öffnen')
                     ->markAsRead()
                     ->url(fn () => Console::getUrl(panel: 'server', tenant: $event->subuser->server)),
             ])

@@ -24,7 +24,7 @@ class ListDatabases extends ListRecords
 
         return [
             CreateAction::make('new')
-                ->label(fn () => $server->databases()->count() >= $server->database_limit ? 'Database limit reached' : 'Create Database')
+                ->label(fn () => $server->databases()->count() >= $server->database_limit ? 'Datenbank-Grenze erreicht' : 'Datenbank erstellen')
                 ->disabled(fn () => $server->databases()->count() >= $server->database_limit)
                 ->color(fn () => $server->databases()->count() >= $server->database_limit ? 'danger' : 'primary')
                 ->createAnother(false)
@@ -33,20 +33,20 @@ class ListDatabases extends ListRecords
                         ->columns(2)
                         ->schema([
                             Select::make('database_host_id')
-                                ->label('Database Host')
+                                ->label('Datenbank-Host')
                                 ->columnSpan(2)
                                 ->required()
-                                ->placeholder('Select Database Host')
+                                ->placeholder('Datenbank-Host auswählen')
                                 ->options(fn () => $server->node->databaseHosts->mapWithKeys(fn (DatabaseHost $databaseHost) => [$databaseHost->id => $databaseHost->name])),
                             TextInput::make('database')
                                 ->columnSpan(1)
-                                ->label('Database Name')
+                                ->label('Datenbank-Name')
                                 ->prefix('s'. $server->id . '_')
                                 ->hintIcon('tabler-question-mark')
-                                ->hintIconTooltip('Leaving this blank will auto generate a random name'),
+                                ->hintIconTooltip('Wenn Sie dieses Feld leer lassen, wird ein zufälliger Name automatisch generiert'),
                             TextInput::make('remote')
                                 ->columnSpan(1)
-                                ->label('Connections From')
+                                ->label('Verbindungen von')
                                 ->default('%'),
                         ]),
                 ])

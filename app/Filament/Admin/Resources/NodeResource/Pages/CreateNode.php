@@ -175,7 +175,7 @@ class CreateNode extends CreateRecord
                                 ->options([
                                     'http' => 'HTTP',
                                     'https' => 'HTTPS (SSL)',
-                                    'https_proxy' => 'HTTPS with (reverse) proxy',
+                                    'https_proxy' => 'HTTPS mit (reverse) Proxy',
                                 ])
                                 ->colors([
                                     'http' => 'warning',

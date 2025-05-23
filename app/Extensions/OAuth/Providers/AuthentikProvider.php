@@ -37,8 +37,8 @@ final class AuthentikProvider extends OAuthProvider
     {
         return array_merge(parent::getSettingsForm(), [
             TextInput::make('OAUTH_AUTHENTIK_BASE_URL')
-                ->label('Base URL')
-                ->placeholder('Base URL')
+                ->label('Basis-URL')
+                ->placeholder('Basis-URL')
                 ->columnSpan(2)
                 ->required()
                 ->url()

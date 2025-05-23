@@ -2,7 +2,7 @@
     @php
         $exception = $node->systemInformation()['exception'] ?? null;
         $version = $node->systemInformation()['version'] ?? null;
-        $content = $exception ? 'Error connecting to node!<br>Check browser console for details.' : $version;
+        $content = $exception ? 'Fehler beim Verbinden mit dem Netzknoten!<br>Prüfen Sie die Browserkonsole für Details.' : $version;
         $icon = 'tabler-heart' . ($exception ? '-off' : 'beat');
         $animated = $exception ? '' : 'animate-pulse';
         $condition = $exception ? 'danger' : 'success';

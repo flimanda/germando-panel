@@ -26,7 +26,7 @@ class CheckEggUpdatesCommand extends Command
     private function check(Egg $egg, EggExporterService $exporterService): void
     {
         if (is_null($egg->update_url)) {
-            $this->comment("$egg->name: Skipping (no update url set)");
+            $this->comment("$egg->name: Übersprungen (keine Update-URL festgelegt)");
 
             return;
         }
@@ -40,13 +40,13 @@ class CheckEggUpdatesCommand extends Command
         unset($updatedJson->exported_at);
 
         if (md5(json_encode($currentJson, JSON_THROW_ON_ERROR)) === md5(json_encode($updatedJson, JSON_THROW_ON_ERROR))) {
-            $this->info("$egg->name: Up-to-date");
+            $this->info("$egg->name: Aktuell");
             cache()->put("eggs.$egg->uuid.update", false, now()->addHour());
 
             return;
         }
 
-        $this->warn("$egg->name: Found update");
+        $this->warn("$egg->name: Update gefunden");
         cache()->put("eggs.$egg->uuid.update", true, now()->addHour());
     }
 }

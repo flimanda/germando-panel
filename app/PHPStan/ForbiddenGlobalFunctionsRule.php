@@ -26,7 +26,7 @@ class ForbiddenGlobalFunctionsRule implements Rule
             if (in_array($functionName, self::FORBIDDEN_FUNCTIONS, true)) {
                 return [
                     RuleErrorBuilder::message(sprintf(
-                        'Usage of global function "%s" is forbidden.',
+                        'Verwendung von globaler Funktion "%s" ist verboten.',
                         $functionName,
                     ))->identifier('myCustomRules.forbiddenGlobalFunctions')->build(),
                 ];

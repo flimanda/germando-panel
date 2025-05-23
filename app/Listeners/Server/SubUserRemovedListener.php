@@ -11,8 +11,8 @@ class SubUserRemovedListener
     public function handle(SubUserRemoved $event): void
     {
         Notification::make()
-            ->title('Removed from Server')
-            ->body('You have been removed as a subuser from ' . $event->server->name . '.')
+            ->title('Von Server entfernt')
+            ->body('Sie wurden als Subbenutzer von ' . $event->server->name . ' entfernt.')
             ->sendToDatabase($event->user);
 
         $event->user->notify(new RemovedFromServer($event->server));

@@ -121,13 +121,13 @@ class PanelInstaller extends SimplePage implements HasForms
             report($exception);
 
             Notification::make()
-                ->title('Could not write to .env file')
+                ->title('Konnte .env-Datei nicht schreiben')
                 ->body($exception->getMessage())
                 ->danger()
                 ->persistent()
                 ->send();
 
-            throw new Halt('Error while writing .env file');
+            throw new Halt('Fehler beim Schreiben der .env-Datei');
         }
 
         Artisan::call('config:clear');
@@ -144,23 +144,23 @@ class PanelInstaller extends SimplePage implements HasForms
             report($exception);
 
             Notification::make()
-                ->title('Migrations failed')
+                ->title('Migrations fehlgeschlagen')
                 ->body($exception->getMessage())
                 ->danger()
                 ->persistent()
                 ->send();
 
-            throw new Halt('Error while running migrations');
+            throw new Halt('Fehler beim Ausführen der Migrationen');
         }
 
         if (!$this->hasCompletedMigrations()) {
             Notification::make()
-                ->title('Migrations failed')
+                ->title('Migrations fehlgeschlagen')
                 ->danger()
                 ->persistent()
                 ->send();
 
-            throw new Halt('Migrations failed');
+            throw new Halt('Migrations fehlgeschlagen');
         }
     }
 
@@ -175,13 +175,13 @@ class PanelInstaller extends SimplePage implements HasForms
             report($exception);
 
             Notification::make()
-                ->title('Could not create admin user')
+                ->title('Konnte Administrator-Benutzer nicht erstellen')
                 ->body($exception->getMessage())
                 ->danger()
                 ->persistent()
                 ->send();
 
-            throw new Halt('Error while creating admin user');
+            throw new Halt('Fehler beim Erstellen des Administrator-Benutzers');
         }
     }
 }

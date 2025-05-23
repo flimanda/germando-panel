@@ -90,6 +90,7 @@ enum EditorLanguages: string implements HasLabel
     case wgsl = 'wgsl';
     case xml = 'xml';
     case yaml = 'yaml';
+    case mndo = 'mandodatei';
 
     public static function fromWithAlias(string $match): self
     {

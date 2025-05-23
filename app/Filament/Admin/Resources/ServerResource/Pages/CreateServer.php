@@ -602,7 +602,7 @@ class CreateServer extends CreateRecord
                                 ])
                                 ->schema([
                                     Hidden::make('io')
-                                        ->helperText('The IO performance relative to other running containers')
+                                        ->helperText('Die IO-Leistung im Vergleich zu anderen laufenden Containern')
                                         ->label('Block IO Proportion')
                                         ->default(500),
 

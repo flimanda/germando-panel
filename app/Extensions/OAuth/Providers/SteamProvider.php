@@ -56,10 +56,10 @@ final class SteamProvider extends OAuthProvider
     public function getSetupSteps(): array
     {
         return array_merge([
-            Step::make('Create API Key')
+            Step::make('API-Schlüssel erstellen')
                 ->schema([
                     Placeholder::make('')
-                        ->content(new HtmlString(Blade::render('Visit <x-filament::link href="https://steamcommunity.com/dev/apikey" target="_blank">https://steamcommunity.com/dev/apikey</x-filament::link> to generate an API key.'))),
+                        ->content(new HtmlString(Blade::render('Besuchen Sie <x-filament::link href="https://steamcommunity.com/dev/apikey" target="_blank">https://steamcommunity.com/dev/apikey</x-filament::link> um einen API-Schlüssel zu erstellen.'))),
                 ]),
         ], parent::getSetupSteps());
     }

@@ -107,7 +107,7 @@ class NetworkAllocationController extends ClientApiController
     public function store(NewAllocationRequest $request, Server $server): array
     {
         if ($server->allocations()->count() >= $server->allocation_limit) {
-            throw new DisplayException('Cannot assign additional allocations to this server: limit has been reached.');
+            throw new DisplayException('Kann keine zusätzlichen Zuweisungen zu diesem Server zuweisen: Limit wurde erreicht.');
         }
 
         $allocation = $this->assignableAllocationService->handle($server);
@@ -134,11 +134,11 @@ class NetworkAllocationController extends ClientApiController
         // Don't allow the deletion of allocations if the server does not have an
         // allocation limit set.
         if (empty($server->allocation_limit)) {
-            throw new DisplayException('You cannot delete allocations for this server: no allocation limit is set.');
+            throw new DisplayException('Sie können keine Zuweisungen für diesen Server löschen: Es ist kein Zuweisungsgrenzwert festgelegt.');
         }
 
         if ($allocation->id === $server->allocation_id) {
-            throw new DisplayException('You cannot delete the primary allocation for this server.');
+            throw new DisplayException('Sie können die primäre Zuweisung für diesen Server nicht löschen.');
         }
 
         Allocation::query()->where('id', $allocation->id)->update([

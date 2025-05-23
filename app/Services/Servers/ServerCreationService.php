@@ -76,7 +76,7 @@ class ServerCreationService
         // Auto-configure the node based on the selected allocation
         // if no node was defined.
         if (empty($data['node_id'])) {
-            Assert::false(empty($data['allocation_id']), 'Expected a non-empty allocation_id in server creation data.');
+            Assert::false(empty($data['allocation_id']), 'Erwartete eine nicht leere allocation_id in den Server-Erstellungsdaten.');
 
             $data['node_id'] = Allocation::query()->findOrFail($data['allocation_id'])->node_id;
         }

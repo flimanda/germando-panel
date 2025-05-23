@@ -31,7 +31,7 @@ class UpdateWidget extends Widget
                 CreateAction::make()
                     ->label(trans('admin/dashboard.sections.intro-update-available.heading'))
                     ->icon('tabler-clipboard-text')
-                    ->url('https://pelican.dev/docs/panel/update', true)
+                    ->url('https://docs.flimando.com/', true)
                     ->color('warning'),
             ],
         ];

@@ -10,7 +10,7 @@ class PruneOrphanedBackupsCommand extends Command
 {
     protected $signature = 'p:maintenance:prune-backups {--prune-age=}';
 
-    protected $description = 'Marks all backups older than "n" minutes that have not yet completed as being failed.';
+    protected $description = 'Markiert alle Backups, die älter als "n" Minuten sind und noch nicht abgeschlossen sind, als fehlgeschlagen.';
 
     public function handle(): void
     {

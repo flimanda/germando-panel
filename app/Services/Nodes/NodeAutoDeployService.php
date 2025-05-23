@@ -35,7 +35,7 @@ class NodeAutoDeployService
         // reading nodes. Go ahead and create it now.
         if (!$key) {
             $key = $this->keyCreationService->setKeyType(ApiKey::TYPE_APPLICATION)->handle([
-                'memo' => 'Automatically generated node deployment key.',
+                'memo' => 'Automatisch generierter Knoten-Bereitstellungsschlüssel.',
                 'user_id' => $request->user()->id,
                 'permissions' => [Node::RESOURCE_NAME => AdminAcl::READ],
             ]);

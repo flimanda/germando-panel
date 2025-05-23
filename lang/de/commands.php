@@ -21,11 +21,11 @@ return [
         'go_back' => 'Zurückgehen und erneut versuchen',
     ],
     'make_node' => [
-        'name' => 'Geben Sie eine kurze Kennung ein, die diesen Knoten von anderen unterscheidet',
-        'description' => 'Geben Sie eine Beschreibung zur Identifizierung des Knotens ein',
+        'name' => 'Geben Sie eine kurze Kennung ein, die diesen Netzknoten von anderen unterscheidet',
+        'description' => 'Geben Sie eine Beschreibung zur Identifizierung des Netzknotens ein',
         'scheme' => 'Bitte geben Sie entweder https für SSL oder http für eine Nicht-SSL-Verbindung ein',
-        'fqdn' => 'Geben Sie einen Domainnamen ein (z.B. node.example.com), der für die Verbindung mit dem Daemon verwendet werden soll. Eine IP-Adresse darf nur verwendet werden, wenn Sie für diesen Knoten kein SSL verwenden',
-        'public' => 'Soll dieser Knoten öffentlich sein? Beachten Sie, dass Sie durch das Setzen eines Knotens auf privat die Möglichkeit zum automatischen Deployment auf diesen Knoten verweigern.',
+        'fqdn' => 'Geben Sie einen Domainnamen ein (z.B. node.example.com), der für die Verbindung mit dem Daemon verwendet werden soll. Eine IP-Adresse darf nur verwendet werden, wenn Sie für diesen Netzknoten kein SSL verwenden',
+        'public' => 'Soll dieser Netzknoten öffentlich sein? Beachten Sie, dass Sie durch das Setzen eines Netzknotens auf privat die Möglichkeit zum automatischen Deployment auf diesen Netzknoten verweigern.',
         'behind_proxy' => 'Ist Ihre FQDN hinter einem Proxy?',
         'maintenance_mode' => 'Soll der Wartungsmodus aktiviert werden?',
         'memory' => 'Geben Sie die maximale Speichermenge ein',
@@ -39,10 +39,10 @@ return [
         'daemonSFTP' => 'Geben Sie den Daemon-SFTP-Überwachungsport ein',
         'daemonSFTPAlias' => 'Geben Sie den Daemon-SFTP-Alias ein (kann leer sein)',
         'daemonBase' => 'Geben Sie den Basisordner ein',
-        'success' => 'Neuer Knoten mit dem Namen :name wurde erfolgreich erstellt und hat die ID :id',
+        'success' => 'Neuer Netzknoten mit dem Namen :name wurde erfolgreich erstellt und hat die ID :id',
     ],
     'node_config' => [
-        'error_not_exist' => 'Der ausgewählte Knoten existiert nicht.',
+        'error_not_exist' => 'Der ausgewählte Netzknoten existiert nicht.',
         'error_invalid_format' => 'Ungültiges Format angegeben. Gültige Optionen sind yaml und json.',
     ],
     'key_generate' => [

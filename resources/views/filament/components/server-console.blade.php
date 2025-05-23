@@ -36,8 +36,8 @@
                 class="w-full focus:outline-none focus:ring-0 border-none dark:bg-gray-900"
                 type="text"
                 :readonly="{{ $this->canSendCommand() ? 'false' : 'true' }}"
-                title="{{ $this->canSendCommand() ? '' : 'Can\'t send command when the server is Offline' }}"
-                placeholder="{{ $this->canSendCommand() ? 'Type a command...' : 'Server Offline...' }}"
+                title="{{ $this->canSendCommand() ? '' : 'Kann keinen Befehl senden, wenn der Server offline ist' }}"
+                placeholder="{{ $this->canSendCommand() ? 'Geben Sie einen Befehl ein...' : 'Server Offline...' }}"
                 wire:model="input"
                 wire:keydown.enter="enter"
                 wire:keydown.up.prevent="up"
@@ -49,7 +49,7 @@
     @script
     <script>
         let theme = {
-            background: 'rgba(19,26,32,0.7)',
+            background: 'rgba(44, 23, 62, 0.7)',
             cursor: 'transparent',
             black: '#000000',
             red: '#E54B4B',

@@ -32,28 +32,25 @@ class SteamDiskSpace extends FeatureProvider
     {
         return Action::make($this->getId())
             ->requiresConfirmation()
-            ->modalHeading('Out of available disk space...')
+            ->modalHeading('Kein Speicherplatz mehr verfügbar...')
             ->modalDescription(new HtmlString(Blade::render(
                 auth()->user()->isAdmin() ? <<<'HTML'
                     <p>
-                        This server has run out of available disk space and cannot complete the install or update
-                        process.
+                        Dieser Server hat keinen verfügbaren Speicherplatz mehr und kann die Installation oder das Update nicht abschließen.
                     </p>
                     <p class="mt-4">
-                        Ensure the machine has enough disk space by typing{' '}
-                        <code class="rounded py-1 px-2">df -h</code> on the machine hosting
-                        this server. Delete files or increase the available disk space to resolve the issue.
+                        Stellen Sie sicher, dass der Host genug Speicherplatz hat, indem Sie{' '}
+                        <code class="rounded py-1 px-2">df -h</code> auf dem Host eingeben, auf dem dieser Server gehostet wird. Löschen Sie Dateien oder erhöhen Sie den verfügbaren Speicherplatz, um das Problem zu lösen.
                     </p>
                 HTML
                 :
                 <<<'HTML'
                     <p>
-                        This server has run out of available disk space and cannot complete the install or update
-                        process. Please get in touch with the administrator(s) and inform them of disk space issues.
+                        Dieser Server hat keinen verfügbaren Speicherplatz mehr und kann die Installation oder das Update nicht abschließen. Bitte kontaktieren Sie den Administrator(en) und informieren Sie sie über das Speicherplatzproblem.
                     </p>
                 HTML
             )))
-            ->modalCancelActionLabel('Close')
+            ->modalCancelActionLabel('Schließen')
             ->action(fn () => null);
     }
 

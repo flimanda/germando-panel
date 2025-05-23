@@ -8,28 +8,28 @@ use Illuminate\Support\Facades\Process;
 
 class QueueWorkerServiceCommand extends Command
 {
-    protected $description = 'Create the service for the queue worker.';
+    protected $description = 'Erstelle den Service für den Warteschlangenworker.';
 
     protected $signature = 'p:environment:queue-service
-        {--service-name= : Name of the queue worker service.}
-        {--user= : The user that PHP runs under.}
-        {--group= : The group that PHP runs under.}
-        {--overwrite : Force overwrite if the service file already exists.}';
+        {--service-name= : Name des Warteschlangenworker-Services.}
+        {--user= : Der Benutzer, unter dem PHP ausgeführt wird.}
+        {--group= : Die Gruppe, unter der PHP ausgeführt wird.}
+        {--overwrite : Erzwinge die Überschreitung, wenn die Service-Datei bereits existiert.}';
 
     public function handle(): void
     {
-        $serviceName = $this->option('service-name') ?? $this->ask('Queue worker service name', 'pelican-queue');
+        $serviceName = $this->option('service-name') ?? $this->ask('Warteschlangenworker-Service-Name', 'pelican-queue');
         $path = '/etc/systemd/system/' . $serviceName  . '.service';
 
         $fileExists = @file_exists($path);
-        if ($fileExists && !$this->option('overwrite') && !$this->confirm('The service file already exists. Do you want to overwrite it?')) {
-            $this->line('Creation of queue worker service file aborted because service file already exists.');
+        if ($fileExists && !$this->option('overwrite') && !$this->confirm('Die Service-Datei existiert bereits. Möchten Sie sie überschreiben?')) {
+            $this->line('Erstellung der Warteschlangenworker-Service-Datei abgebrochen, weil die Service-Datei bereits existiert.');
 
             return;
         }
 
-        $user = $this->option('user') ?? $this->ask('Webserver User', 'www-data');
-        $group = $this->option('group') ?? $this->ask('Webserver Group', 'www-data');
+        $user = $this->option('user') ?? $this->ask('Webserver-Benutzer', 'www-data');
+        $group = $this->option('group') ?? $this->ask('Webserver-Gruppe', 'www-data');
 
         $redisUsed = config('queue.default') === 'redis' || config('session.driver') === 'redis' || config('cache.default') === 'redis';
         $afterRedis = $redisUsed ? '

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class MakeUserCommand extends Command
 {
-    protected $description = 'Creates a user on the system via the CLI.';
+    protected $description = 'Erstellt einen Benutzer auf dem System über die CLI.';
 
     protected $signature = 'p:user:make {--email=} {--username=} {--password=} {--admin=} {--no-password}';
 

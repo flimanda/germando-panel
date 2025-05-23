@@ -26,11 +26,11 @@ class JavaVersion extends FeatureProvider
     {
         return [
             'java.lang.UnsupportedClassVersionError',
-            'unsupported major.minor version',
-            'has been compiled by a more recent version of the java runtime',
-            'minecraft 1.17 requires running the server with java 16 or above',
-            'minecraft 1.18 requires running the server with java 17 or above',
-            'minecraft 1.19 requires running the server with java 17 or above',
+            'nicht unterstützte major.minor Version',
+            'wurde mit einer neueren Version des Java-Runtimes erstellt',
+            'minecraft 1.17 erfordert, dass der Server mit java 16 oder höher gestartet wird',
+            'minecraft 1.18 erfordert, dass der Server mit java 17 oder höher gestartet wird',
+            'minecraft 1.19 erfordert, dass der Server mit java 17 oder höher gestartet wird',
         ];
     }
 
@@ -46,15 +46,15 @@ class JavaVersion extends FeatureProvider
 
         return Action::make($this->getId())
             ->requiresConfirmation()
-            ->modalHeading('Unsupported Java Version')
-            ->modalDescription('This server is currently running an unsupported version of Java and cannot be started.')
-            ->modalSubmitActionLabel('Update Docker Image')
+            ->modalHeading('Nicht unterstützte Java-Version')
+            ->modalDescription('Dieser Server ist derzeit mit einer nicht unterstützten Version von Java gestartet und kann nicht gestartet werden.')
+            ->modalSubmitActionLabel('Docker-Image aktualisieren')
             ->disabledForm(fn () => !auth()->user()->can(Permission::ACTION_STARTUP_DOCKER_IMAGE, $server))
             ->form([
                 Placeholder::make('java')
-                    ->label('Please select a supported version from the list below to continue starting the server.'),
+                    ->label('Bitte wählen Sie eine unterstützte Version aus der Liste unten, um den Server zu starten.'),
                 Select::make('image')
-                    ->label('Docker Image')
+                    ->label('Docker-Image')
                     ->disabled(fn () => !in_array($server->image, $server->egg->docker_images))
                     ->options(fn () => collect($server->egg->docker_images)->mapWithKeys(fn ($key, $value) => [$key => $value]))
                     ->selectablePlaceholder(false)
@@ -79,13 +79,13 @@ class JavaVersion extends FeatureProvider
                     $powerRepository->setServer($server)->send('restart');
 
                     Notification::make()
-                        ->title('Docker image updated')
-                        ->body('Server will restart now.')
+                        ->title('Docker-Image aktualisiert')
+                        ->body('Server wird jetzt neustarten.')
                         ->success()
                         ->send();
                 } catch (Exception $exception) {
                     Notification::make()
-                        ->title('Could not update docker image')
+                        ->title('Konnte Docker-Image nicht aktualisieren')
                         ->body($exception->getMessage())
                         ->danger()
                         ->send();

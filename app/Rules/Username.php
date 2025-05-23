@@ -30,8 +30,8 @@ class Username implements Rule
      */
     public function message(): string
     {
-        return 'The :attribute must start and end with alpha-numeric characters and
-                contain only letters, numbers, dashes, underscores, and periods.';
+        return 'Das :attribute muss mit alphanumerischen Zeichen beginnen und enden und
+                nur Buchstaben, Zahlen, Bindestriche, Unterstriche und Punkte enthalten.';
     }
 
     /**

@@ -1,7 +1,7 @@
 @props([
 'code' => '401',
-'title' => 'Unauthorized',
-'subtitle' => 'You are not authorized to access this resource.',
+'title' => 'Nicht autorisiert',
+'subtitle' => 'Sie sind nicht berechtigt, auf diese Ressource zuzugreifen.',
 'icon' => 'tabler-exclamation-circle'
 ])
 

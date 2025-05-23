@@ -1,7 +1,7 @@
 @props([
 'code' => '418',
-'title' => 'I am a teapot',
-'subtitle' => 'What happened?',
+'title' => 'Ich bin eine Teekanne',
+'subtitle' => 'Was ist passiert?',
 'icon' => 'tabler-teapot'
 ])
 

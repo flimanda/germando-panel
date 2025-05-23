@@ -19,12 +19,12 @@ class SessionStep
     public static function make(): Step
     {
         return Step::make('session')
-            ->label('Session')
+            ->label('Sitzung')
             ->schema([
                 ToggleButtons::make('env_session.SESSION_DRIVER')
-                    ->label('Session Driver')
+                    ->label('Sitzungsspeicher')
                     ->hintIcon('tabler-question-mark')
-                    ->hintIconTooltip('The driver used for storing sessions. We recommend "Filesystem" or "Database".')
+                    ->hintIconTooltip('Der Treiber, der für das Speichern von Sitzungen verwendet wird. Wir empfehlen "Filesystem" oder "Database".')
                     ->required()
                     ->inline()
                     ->options(self::SESSION_DRIVERS)

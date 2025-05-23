@@ -107,7 +107,7 @@ class DatabaseResource extends Resource
             ])
             ->actions([
                 ViewAction::make()
-                    ->modalHeading(fn (Database $database) => 'Viewing ' . $database->database),
+                    ->modalHeading(fn (Database $database) => 'Anzeigen ' . $database->database),
                 DeleteAction::make()
                     ->using(fn (Database $database, DatabaseManagementService $service) => $service->delete($database)),
             ]);

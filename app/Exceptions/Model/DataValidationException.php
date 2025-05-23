@@ -17,7 +17,7 @@ class DataValidationException extends PanelException implements HttpExceptionInt
     public function __construct(protected Validator $validator, protected Model $model)
     {
         $message = sprintf(
-            'Could not save %s[%s]: failed to validate data: %s',
+            'Konnte %s[%s] nicht speichern: Validierung fehlgeschlagen: %s',
             get_class($model),
             $model->getKey(),
             $validator->errors()->toJson()

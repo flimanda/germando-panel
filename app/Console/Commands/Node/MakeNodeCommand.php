@@ -8,27 +8,27 @@ use Illuminate\Console\Command;
 class MakeNodeCommand extends Command
 {
     protected $signature = 'p:node:make
-                            {--name= : A name to identify the node.}
-                            {--description= : A description to identify the node.}
-                            {--locationId= : A valid locationId.}
-                            {--fqdn= : The domain name (e.g node.example.com) to be used for connecting to the daemon. An IP address may only be used if you are not using SSL for this node.}
-                            {--public= : Should the node be public or private? (public=1 / private=0).}
-                            {--scheme= : Which scheme should be used? (Enable SSL=https / Disable SSL=http).}
-                            {--proxy= : Is the daemon behind a proxy? (Yes=1 / No=0).}
-                            {--maintenance= : Should maintenance mode be enabled? (Enable Maintenance mode=1 / Disable Maintenance mode=0).}
-                            {--maxMemory= : Set the max memory amount.}
-                            {--overallocateMemory= : Enter the amount of ram to overallocate (% or -1 to overallocate the maximum).}
-                            {--maxDisk= : Set the max disk amount.}
-                            {--overallocateDisk= : Enter the amount of disk to overallocate (% or -1 to overallocate the maximum).}
-                            {--maxCpu= : Set the max cpu amount.}
-                            {--overallocateCpu= : Enter the amount of cpu to overallocate (% or -1 to overallocate the maximum).}
-                            {--uploadSize= : Enter the maximum upload filesize.}
-                            {--daemonListeningPort= : Enter the daemon listening port.}
-                            {--daemonSFTPPort= : Enter the daemon SFTP listening port.}
-                            {--daemonSFTPAlias= : Enter the daemon SFTP alias.}
-                            {--daemonBase= : Enter the base folder.}';
+                            {--name= : Ein Name, um den Netzknoten zu identifizieren.}
+                            {--description= : Eine Beschreibung, um den Netzknoten zu identifizieren.}
+                            {--locationId= : Eine gültige locationId.}
+                            {--fqdn= : Der Domainname (z.B. node.example.com) zum Verbinden mit dem Daemon. Eine IP-Adresse kann nur verwendet werden, wenn Sie SSL für diesen Netzknoten nicht verwenden.}
+                            {--public= : Soll der Netzknoten öffentlich oder privat sein? (öffentlich=1 / privat=0).}
+                            {--scheme= : Welche Verschlüsselung soll verwendet werden? (SSL aktivieren=https / SSL deaktivieren=http).}
+                            {--proxy= : Steht der Daemon hinter einem Proxy? (Ja=1 / Nein=0).}
+                            {--maintenance= : Soll der Wartungsmodus aktiviert sein? (Wartungsmodus aktivieren=1 / Wartungsmodus deaktivieren=0).}
+                            {--maxMemory= : Setzen Sie die maximale Speichermenge.}
+                            {--overallocateMemory= : Setzen Sie die Speichermenge, die Sie über die maximale Speichermenge hinaus zuweisen möchten (% oder -1, um die maximale Speichermenge zu überzuzuweisen).}
+                            {--maxDisk= : Setzen Sie die maximale Festplattenmenge.}
+                            {--overallocateDisk= : Setzen Sie die Festplattenmenge, die Sie über die maximale Festplattenmenge hinaus zuweisen möchten (% oder -1, um die maximale Festplattenmenge zu überzuzuweisen).}
+                            {--maxCpu= : Setzen Sie die maximale CPU-Menge.}
+                            {--overallocateCpu= : Setzen Sie die CPU-Menge, die Sie über die maximale CPU-Menge hinaus zuweisen möchten (% oder -1, um die maximale CPU-Menge zu überzuzuweisen).}
+                            {--uploadSize= : Setzen Sie die maximale Upload-Dateigröße.}
+                            {--daemonListeningPort= : Setzen Sie den Daemon-Listening-Port.}
+                            {--daemonSFTPPort= : Setzen Sie den Daemon-SFTP-Listening-Port.}
+                            {--daemonSFTPAlias= : Setzen Sie den Daemon-SFTP-Alias.}
+                            {--daemonBase= : Setzen Sie den Basisordner.}';
 
-    protected $description = 'Creates a new node on the system via the CLI.';
+    protected $description = 'Erstellt einen neuen Netzknoten auf dem System über die CLI.';
 
     /**
      * Handle the command execution process.

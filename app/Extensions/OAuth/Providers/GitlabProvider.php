@@ -33,8 +33,8 @@ final class GitlabProvider extends OAuthProvider
     {
         return array_merge(parent::getSettingsForm(), [
             TextInput::make('OAUTH_GITLAB_HOST')
-                ->label('Custom Host')
-                ->placeholder('Only set a custom host if you are self hosting gitlab')
+                ->label('Benutzerdefinierter Host')
+                ->placeholder('Nur setzen, wenn Sie Gitlab selbst hosten')
                 ->columnSpan(2)
                 ->url()
                 ->autocomplete(false)
@@ -45,10 +45,10 @@ final class GitlabProvider extends OAuthProvider
     public function getSetupSteps(): array
     {
         return array_merge([
-            Step::make('Register new Gitlab OAuth App')
+            Step::make('Neue Gitlab OAuth-App registrieren')
                 ->schema([
                     Placeholder::make('')
-                        ->content(new HtmlString(Blade::render('Check out the <x-filament::link href="https://docs.gitlab.com/integration/oauth_provider/" target="_blank">Gitlab docs</x-filament::link> on how to create the oauth app.'))),
+                        ->content(new HtmlString(Blade::render('Überprüfen Sie die <x-filament::link href="https://docs.gitlab.com/integration/oauth_provider/" target="_blank">Gitlab Dokumentation</x-filament::link> auf how to create the oauth app.'))),
                     TextInput::make('_noenv_callback')
                         ->label('Redirect URI')
                         ->dehydrated()

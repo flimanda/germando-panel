@@ -159,7 +159,7 @@ class Settings extends ServerFormPage
                             ])
                             ->schema([
                                 TextInput::make('connection')
-                                    ->label('Connection')
+                                    ->label('Verbindung')
                                     ->columnSpan(1)
                                     ->disabled()
                                     ->suffixAction(fn () => request()->isSecure() ? CopyAction::make() : null)
@@ -187,10 +187,10 @@ class Settings extends ServerFormPage
                                     ->formatStateUsing(fn (Server $server) => auth()->user()->username . '.' . $server->uuid_short),
                                 Placeholder::make('password')
                                     ->columnSpan(1)
-                                    ->content('Your SFTP password is the same as the password you use to access this panel.'),
+                                    ->content('Ihr SFTP-Passwort ist das gleiche wie das Passwort, das Sie zum Zugriff auf dieses Panel verwenden.'),
                             ]),
                     ]),
-                Section::make('Reinstall Server')
+                Section::make('Server neu installieren')
                     ->hidden(fn () => !auth()->user()->can(Permission::ACTION_SETTINGS_REINSTALL, $server))
                     ->collapsible()
                     ->footerActions([
@@ -199,9 +199,9 @@ class Settings extends ServerFormPage
                             ->disabled(fn () => !auth()->user()->can(Permission::ACTION_SETTINGS_REINSTALL, $server))
                             ->label('Reinstall')
                             ->requiresConfirmation()
-                            ->modalHeading('Are you sure you want to reinstall the server?')
-                            ->modalDescription('Some files may be deleted or modified during this process, please back up your data before continuing.')
-                            ->modalSubmitActionLabel('Yes, Reinstall')
+                            ->modalHeading('Sind Sie sicher, dass Sie den Server neu installieren möchten?')
+                            ->modalDescription('Möglicherweise werden einige Dateien während dieses Prozesses gelöscht oder geändert, bitte sichern Sie Ihre Daten vor dem Fortsetzen.')
+                            ->modalSubmitActionLabel('Ja, neu installieren')
                             ->action(function (Server $server, ReinstallServerService $reinstallService) {
                                 abort_unless(auth()->user()->can(Permission::ACTION_SETTINGS_REINSTALL, $server), 403);
 
@@ -233,9 +233,9 @@ class Settings extends ServerFormPage
                     ->footerActionsAlignment(Alignment::Right)
                     ->schema([
                         Placeholder::make('')
-                            ->label('Reinstalling your server will stop it, and then re-run the installation script that initially set it up.'),
+                            ->label('Das Neustarten Ihres Servers wird es anhalten, und dann wird das Installationsskript erneut ausgeführt, das es ursprünglich eingerichtet hat.'),
                         Placeholder::make('')
-                            ->label('Some files may be deleted or modified during this process, please back up your data before continuing.'),
+                            ->label('Möglicherweise werden einige Dateien während dieses Prozesses gelöscht oder geändert, bitte sichern Sie Ihre Daten vor dem Fortsetzen.'),
                     ]),
             ]);
     }
@@ -259,13 +259,13 @@ class Settings extends ServerFormPage
 
             Notification::make()
                 ->success()
-                ->title('Updated Server Name')
+                ->title('Servername aktualisiert')
                 ->body(fn () => $original . ' -> ' . $name)
                 ->send();
         } catch (Exception $exception) {
             Notification::make()
                 ->danger()
-                ->title('Failed')
+                ->title('Fehlgeschlagen')
                 ->body($exception->getMessage())
                 ->send();
         }
@@ -290,13 +290,13 @@ class Settings extends ServerFormPage
 
             Notification::make()
                 ->success()
-                ->title('Updated Server Description')
+                ->title('Serverbeschreibung aktualisiert')
                 ->body(fn () => $original . ' -> ' . $description)
                 ->send();
         } catch (Exception $exception) {
             Notification::make()
                 ->danger()
-                ->title('Failed')
+                ->title('Fehlgeschlagen')
                 ->body($exception->getMessage())
                 ->send();
         }

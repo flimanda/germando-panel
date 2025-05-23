@@ -124,7 +124,7 @@ class ActivityLog extends Model implements HasIcon, HasLabel
     public function prunable(): Builder
     {
         if (is_null(config('activity.prune_days'))) {
-            throw new \LogicException('Cannot prune activity logs: no "prune_days" configuration value is set.');
+            throw new \LogicException('Kann Aktivitätsprotokoll nicht bereinigen: Kein "prune_days" Konfigurationswert ist festgelegt.');
         }
 
         return static::where('timestamp', '<=', Carbon::now()->subDays(config('activity.prune_days')));

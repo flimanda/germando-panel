@@ -9,12 +9,12 @@ class EmailSettingsCommand extends Command
 {
     use EnvironmentWriterTrait;
 
-    protected $description = 'Set or update the email sending configuration for the Panel.';
+    protected $description = 'Setze oder aktualisiere die E-Mail-Sende-Konfiguration für das Panel.';
 
     protected $signature = 'p:environment:mail
-                            {--driver= : The mail driver to use.}
-                            {--email= : Email address that messages from the Panel will originate from.}
-                            {--from= : The name emails from the Panel will appear to be from.}
+                            {--driver= : Der Mail-Treiber, den Sie verwenden möchten.}
+                            {--email= : Die E-Mail-Adresse, von der Nachrichten aus dem Panel stammen.}
+                            {--from= : Der Name, unter dem E-Mails aus dem Panel erscheinen.}
                             {--encryption=}
                             {--host=}
                             {--port=}
@@ -36,8 +36,8 @@ class EmailSettingsCommand extends Command
             trans('command/messages.environment.mail.ask_driver'),
             [
                 'log' => 'Log',
-                'smtp' => 'SMTP Server',
-                'sendmail' => 'sendmail Binary',
+                'smtp' => 'SMTP-Server',
+                'sendmail' => 'sendmail-Binärdatei',
                 'mailgun' => 'Mailgun',
                 'mandrill' => 'Mandrill',
                 'postmark' => 'Postmark',

@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 
 class AppSettingsCommand extends Command
 {
-    protected $description = 'Configure basic environment settings for the Panel.';
+    protected $description = 'Konfiguriere grundlegende Umgebungseinstellungen für das Panel.';
 
     protected $signature = 'p:environment:setup';
 
@@ -14,19 +14,19 @@ class AppSettingsCommand extends Command
     {
         $path = base_path('.env');
         if (!file_exists($path)) {
-            $this->comment('Copying example .env file');
+            $this->comment('Kopiere die Beispiel- .env-Datei');
             copy($path . '.example', $path);
         }
 
         if (!config('app.key')) {
-            $this->comment('Generating app key');
+            $this->comment('Generiere App-Schlüssel');
             $this->call('key:generate');
         }
 
-        $this->comment('Creating storage link');
+        $this->comment('Erstelle Speicherverknüpfung');
         $this->call('storage:link');
 
-        $this->comment('Caching components & icons');
+        $this->comment('Caching Komponenten & Icons');
         $this->call('filament:optimize');
     }
 }

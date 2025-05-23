@@ -53,7 +53,7 @@ class AssignmentService
         try {
             $parsed = Network::parse($data['allocation_ip']);
         } catch (\Exception $exception) {
-            throw new DisplayException("Could not parse provided allocation IP address ({$data['allocation_ip']}): {$exception->getMessage()}", $exception);
+            throw new DisplayException("Konnte die bereitgestellte Allocation IP-Adresse ({$data['allocation_ip']}) nicht analysieren: {$exception->getMessage()}", $exception);
         }
 
         $this->connection->beginTransaction();

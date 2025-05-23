@@ -18,14 +18,14 @@ class CacheSettingsCommand extends Command
         'redis' => 'Redis',
     ];
 
-    protected $description = 'Configure cache settings for the Panel.';
+    protected $description = 'Konfiguriere Cache-Einstellungen für das Panel.';
 
     protected $signature = 'p:environment:cache
-                            {--driver= : The cache driver backend to use.}
-                            {--redis-host= : Redis host to use for connections.}
-                            {--redis-user= : User used to connect to redis.}
-                            {--redis-pass= : Password used to connect to redis.}
-                            {--redis-port= : Port to connect to redis over.}';
+                            {--driver= : Der Cache-Treiber, den Sie verwenden möchten.}
+                            {--redis-host= : Redis-Host, den Sie verwenden möchten.}
+                            {--redis-user= : Benutzer, der zum Verbinden mit Redis verwendet wird.}
+                            {--redis-pass= : Passwort, das zum Verbinden mit Redis verwendet wird.}
+                            {--redis-port= : Port, über den Sie mit Redis verbinden möchten.}';
 
     /**
      * CacheSettingsCommand constructor.
@@ -42,7 +42,7 @@ class CacheSettingsCommand extends Command
     {
         $selected = config('cache.default', 'file');
         $this->variables['CACHE_STORE'] = $this->option('driver') ?? $this->choice(
-            'Cache Driver',
+            'Cache-Treiber',
             self::CACHE_DRIVERS,
             array_key_exists($selected, self::CACHE_DRIVERS) ? $selected : null
         );

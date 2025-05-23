@@ -25,7 +25,7 @@ class ProcessScheduleService
         $task = $schedule->tasks()->orderBy('sequence_id')->first();
 
         if (!$task) {
-            throw new DisplayException('Cannot process schedule for task execution: no tasks are registered.');
+            throw new DisplayException('Konnte keine Aufgaben für die Ausführung des Zeitplans finden.');
         }
 
         $this->connection->transaction(function () use ($schedule, $task) {

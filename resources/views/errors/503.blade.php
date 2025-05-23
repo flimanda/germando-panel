@@ -1,7 +1,7 @@
 @props([
 'code' => '503',
-'title' => 'Maintenance',
-'subtitle' => 'This site is currently down for maintenance.',
+'title' => 'Wartung',
+'subtitle' => 'Diese Seite ist derzeit gesperrt für Wartungsarbeiten.',
 'icon' => 'tabler-traffic-cone'
 ])
 

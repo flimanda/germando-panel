@@ -21,8 +21,8 @@ class MailTested extends Notification
     public function toMail(): MailMessage
     {
         return (new MailMessage())
-            ->subject('Panel Test Message')
-            ->greeting('Hello ' . $this->user->name . '!')
-            ->line('This is a test of the Panel mail system. You\'re good to go!');
+            ->subject('Panel Test Nachricht')
+            ->greeting('Hallo ' . $this->user->name . '!')
+            ->line('Dies ist eine Testnachricht des Panel-Mail-Systems. Alles ist in Ordnung!');
     }
 }
