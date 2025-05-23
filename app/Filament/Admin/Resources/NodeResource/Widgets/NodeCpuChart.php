@@ -33,7 +33,7 @@ class NodeCpuChart extends ChartWidget
                 [
                     'data' => array_column($cpu, 'cpu'),
                     'backgroundColor' => [
-                        'rgba(96, 165, 250, 0.3)',
+                        'rgba(140, 96, 250, 0.3)',
                     ],
                     'tension' => '0.3',
                     'fill' => true,

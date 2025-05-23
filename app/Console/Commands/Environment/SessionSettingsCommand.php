@@ -19,14 +19,14 @@ class SessionSettingsCommand extends Command
         'cookie' => 'Cookie',
     ];
 
-    protected $description = 'Configure session settings for the Panel.';
+    protected $description = 'Konfiguriere Sitzungseinstellungen für das Panel.';
 
     protected $signature = 'p:environment:session
-                            {--driver= : The session driver backend to use.}
-                            {--redis-host= : Redis host to use for connections.}
-                            {--redis-user= : User used to connect to redis.}
-                            {--redis-pass= : Password used to connect to redis.}
-                            {--redis-port= : Port to connect to redis over.}';
+                            {--driver= : Der Sitzungsdriver, den Sie verwenden möchten.}
+                            {--redis-host= : Redis-Host, den Sie verwenden möchten.}
+                            {--redis-user= : Benutzer, der zum Verbinden mit Redis verwendet wird.}
+                            {--redis-pass= : Passwort, das zum Verbinden mit Redis verwendet wird.}
+                            {--redis-port= : Port, über den Sie mit Redis verbinden möchten.}';
 
     /**
      * SessionSettingsCommand constructor.
@@ -43,7 +43,7 @@ class SessionSettingsCommand extends Command
     {
         $selected = config('session.driver', 'file');
         $this->variables['SESSION_DRIVER'] = $this->option('driver') ?? $this->choice(
-            'Session Driver',
+            'Sitzungsdriver',
             self::SESSION_DRIVERS,
             array_key_exists($selected, self::SESSION_DRIVERS) ? $selected : null
         );

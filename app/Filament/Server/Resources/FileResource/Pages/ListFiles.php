@@ -107,7 +107,7 @@ class ListFiles extends ListRecords
             ->actions([
                 Action::make('view')
                     ->authorize(fn () => auth()->user()->can(Permission::ACTION_FILE_READ, $server))
-                    ->label('Open')
+                    ->label('Öffnen')
                     ->icon('tabler-eye')
                     ->visible(fn (File $file) => $file->is_directory)
                     ->url(fn (File $file) => self::getUrl(['path' => join_paths($this->path, $file->name)])),
@@ -123,7 +123,7 @@ class ListFiles extends ListRecords
                         ->icon('tabler-forms')
                         ->form([
                             TextInput::make('name')
-                                ->label('File name')
+                                ->label('Dateiname')
                                 ->default(fn (File $file) => $file->name)
                                 ->required(),
                         ])
@@ -140,14 +140,14 @@ class ListFiles extends ListRecords
                                 ->log();
 
                             Notification::make()
-                                ->title('File Renamed')
+                                ->title('Datei umbenannt')
                                 ->body(fn () => $file->name . ' -> ' . $data['name'])
                                 ->success()
                                 ->send();
                         }),
                     Action::make('copy')
                         ->authorize(fn () => auth()->user()->can(Permission::ACTION_FILE_CREATE, $server))
-                        ->label('Copy')
+                        ->label('Kopieren')
                         ->icon('tabler-copy')
                         ->visible(fn (File $file) => $file->is_file)
                         ->action(function (File $file) {
@@ -158,7 +158,7 @@ class ListFiles extends ListRecords
                                 ->log();
 
                             Notification::make()
-                                ->title('File copied')
+                                ->title('Datei kopiert')
                                 ->success()
                                 ->send();
 
@@ -172,12 +172,12 @@ class ListFiles extends ListRecords
                         ->url(fn (File $file) => DownloadFiles::getUrl(['path' => join_paths($this->path, $file->name)]), true),
                     Action::make('move')
                         ->authorize(fn () => auth()->user()->can(Permission::ACTION_FILE_UPDATE, $server))
-                        ->label('Move')
+                        ->label('Verschieben')
                         ->icon('tabler-replace')
                         ->form([
                             TextInput::make('location')
-                                ->label('New location')
-                                ->hint('Enter the location of this file or folder, relative to the current directory.')
+                                ->label('Neue Position')
+                                ->hint('Geben Sie die Position dieser Datei oder des Ordners ein, relativ zum aktuellen Verzeichnis.')
                                 ->required()
                                 ->live(),
                             Placeholder::make('new_location')
@@ -200,14 +200,14 @@ class ListFiles extends ListRecords
                                 ->log();
 
                             Notification::make()
-                                ->title('File Moved')
+                                ->title('Datei verschoben')
                                 ->body($oldLocation . ' -> ' . $newLocation)
                                 ->success()
                                 ->send();
                         }),
                     Action::make('permissions')
                         ->authorize(fn () => auth()->user()->can(Permission::ACTION_FILE_UPDATE, $server))
-                        ->label('Permissions')
+                        ->label('Berechtigungen')
                         ->icon('tabler-license')
                         ->form([
                             CheckboxList::make('owner')
@@ -281,7 +281,7 @@ class ListFiles extends ListRecords
                                 ->log();
 
                             Notification::make()
-                                ->title('Archive created')
+                                ->title('Archive erstellt')
                                 ->body($archive['name'])
                                 ->success()
                                 ->send();
@@ -290,7 +290,7 @@ class ListFiles extends ListRecords
                         }),
                     Action::make('unarchive')
                         ->authorize(fn () => auth()->user()->can(Permission::ACTION_FILE_ARCHIVE, $server))
-                        ->label('Unarchive')
+                        ->label('Entpacken')
                         ->icon('tabler-archive')
                         ->visible(fn (File $file) => $file->isArchive())
                         ->action(function (File $file) {
@@ -302,7 +302,7 @@ class ListFiles extends ListRecords
                                 ->log();
 
                             Notification::make()
-                                ->title('Unarchive completed')
+                                ->title('Entpackung abgeschlossen')
                                 ->success()
                                 ->send();
 
@@ -315,7 +315,7 @@ class ListFiles extends ListRecords
                     ->icon('tabler-trash')
                     ->requiresConfirmation()
                     ->modalDescription(fn (File $file) => $file->name)
-                    ->modalHeading('Delete file?')
+                    ->modalHeading('Datei löschen?')
                     ->action(function (File $file) {
                         $this->getDaemonFileRepository()->deleteFiles($this->path, [$file->name]);
 
@@ -330,8 +330,8 @@ class ListFiles extends ListRecords
                     ->authorize(fn () => auth()->user()->can(Permission::ACTION_FILE_UPDATE, $server))
                     ->form([
                         TextInput::make('location')
-                            ->label('Directory')
-                            ->hint('Enter the new directory, relative to the current directory.')
+                            ->label('Verzeichnis')
+                            ->hint('Geben Sie das neue Verzeichnis ein, relativ zum aktuellen Verzeichnis.')
                             ->required()
                             ->live(),
                         Placeholder::make('new_location')
@@ -349,7 +349,7 @@ class ListFiles extends ListRecords
                             ->log();
 
                         Notification::make()
-                            ->title(count($files) . ' Files were moved to ' . resolve_path(join_paths($this->path, $location)))
+                            ->title(count($files) . ' Dateien wurden nach ' . resolve_path(join_paths($this->path, $location)) . ' verschoben')
                             ->success()
                             ->send();
                     }),
@@ -357,7 +357,7 @@ class ListFiles extends ListRecords
                     ->authorize(fn () => auth()->user()->can(Permission::ACTION_FILE_ARCHIVE, $server))
                     ->form([
                         TextInput::make('name')
-                            ->label('Archive name')
+                            ->label('Archivename')
                             ->placeholder(fn () => 'archive-' . str(Carbon::now()->toRfc3339String())->replace(':', '')->before('+0000') . 'Z')
                             ->suffix('.tar.gz'),
                     ])
@@ -373,7 +373,7 @@ class ListFiles extends ListRecords
                             ->log();
 
                         Notification::make()
-                            ->title('Archive created')
+                            ->title('Archive erstellt')
                             ->body($archive['name'])
                             ->success()
                             ->send();
@@ -392,7 +392,7 @@ class ListFiles extends ListRecords
                             ->log();
 
                         Notification::make()
-                            ->title(count($files) . ' Files deleted.')
+                            ->title(count($files) . ' Dateien wurden gelöscht.')
                             ->success()
                             ->send();
                     }),
@@ -407,10 +407,10 @@ class ListFiles extends ListRecords
         return [
             HeaderAction::make('new_file')
                 ->authorize(fn () => auth()->user()->can(Permission::ACTION_FILE_CREATE, $server))
-                ->label('New File')
+                ->label('Neue Datei')
                 ->color('gray')
                 ->keyBindings('')
-                ->modalSubmitActionLabel('Create')
+                ->modalSubmitActionLabel('Erstellen')
                 ->action(function ($data) {
                     $this->getDaemonFileRepository()->putContent(join_paths($this->path, $data['name']), $data['editor'] ?? '');
 
@@ -420,7 +420,7 @@ class ListFiles extends ListRecords
                 })
                 ->form([
                     TextInput::make('name')
-                        ->label('File Name')
+                        ->label('Dateiname')
                         ->required(),
                     Select::make('lang')
                         ->label('Syntax Highlighting')
@@ -438,7 +438,7 @@ class ListFiles extends ListRecords
                 ]),
             HeaderAction::make('new_folder')
                 ->authorize(fn () => auth()->user()->can(Permission::ACTION_FILE_CREATE, $server))
-                ->label('New Folder')
+                ->label('Neuer Ordner')
                 ->color('gray')
                 ->action(function ($data) {
                     $this->getDaemonFileRepository()->createDirectory($data['name'], $this->path);
@@ -449,12 +449,12 @@ class ListFiles extends ListRecords
                 })
                 ->form([
                     TextInput::make('name')
-                        ->label('Folder Name')
+                        ->label('Ordner Name')
                         ->required(),
                 ]),
             HeaderAction::make('upload')
                 ->authorize(fn () => auth()->user()->can(Permission::ACTION_FILE_CREATE, $server))
-                ->label('Upload')
+                ->label('Hochladen')
                 ->action(function ($data) {
                     if (count($data['files']) > 0 && !isset($data['url'])) {
                         /** @var UploadedFile $file */
@@ -503,11 +503,11 @@ class ListFiles extends ListRecords
                 ]),
             HeaderAction::make('search')
                 ->authorize(fn () => auth()->user()->can(Permission::ACTION_FILE_READ, $server))
-                ->label('Global Search')
-                ->modalSubmitActionLabel('Search')
+                ->label('Global Suche')
+                ->modalSubmitActionLabel('Suchen')
                 ->form([
                     TextInput::make('searchTerm')
-                        ->placeholder('Enter a search term, e.g. *.txt')
+                        ->placeholder('Geben Sie einen Suchbegriff ein, z.B. *.txt')
                         ->required()
                         ->regex('/^[^*]*\*?[^*]*$/')
                         ->minValue(3),

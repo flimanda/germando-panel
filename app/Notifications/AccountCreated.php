@@ -24,13 +24,13 @@ class AccountCreated extends Notification implements ShouldQueue
     public function toMail(User $notifiable): MailMessage
     {
         $message = (new MailMessage())
-            ->greeting('Hello ' . $notifiable->name . '!')
-            ->line('You are receiving this email because an account has been created for you on ' . config('app.name') . '.')
-            ->line('Username: ' . $notifiable->username)
-            ->line('Email: ' . $notifiable->email);
+            ->greeting('Hallo ' . $notifiable->name . '!')
+            ->line('Du erhältst diese E-Mail, weil ein Konto für dich auf ' . config('app.name') . ' erstellt wurde.')
+            ->line('Benutzername: ' . $notifiable->username)
+            ->line('E-Mail: ' . $notifiable->email);
 
         if (!is_null($this->token)) {
-            return $message->action('Setup Your Account', Filament::getPanel('app')->getResetPasswordUrl($this->token, $notifiable));
+            return $message->action('Konto einrichten', Filament::getPanel('app')->getResetPasswordUrl($this->token, $notifiable));
         }
 
         return $message;

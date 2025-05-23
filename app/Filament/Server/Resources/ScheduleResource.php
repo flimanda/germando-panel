@@ -88,8 +88,8 @@ class ScheduleResource extends Resource
                         'md' => 3,
                         'lg' => 4,
                     ])
-                    ->label('Schedule Name')
-                    ->placeholder('A human readable identifier for this schedule.')
+                    ->label('Zeitplan Name')
+                    ->placeholder('Ein von Menschen lesbarer Name für diesen Zeitplan.')
                     ->autocomplete(false)
                     ->required(),
                 ToggleButtons::make('Status')
@@ -107,8 +107,8 @@ class ScheduleResource extends Resource
                         'lg' => 1,
                     ]),
                 Toggle::make('only_when_online')
-                    ->label('Only when Server is Online?')
-                    ->hintIconTooltip('Only execute this schedule when the server is in a running state.')
+                    ->label('Nur wenn Server online ist?')
+                    ->hintIconTooltip('Nur diesen Zeitplan ausführen, wenn der Server in einem laufenden Zustand ist.')
                     ->hintIcon('tabler-question-mark')
                     ->inline(false)
                     ->columnSpan([
@@ -118,8 +118,8 @@ class ScheduleResource extends Resource
                     ->required()
                     ->default(1),
                 Toggle::make('is_active')
-                    ->label('Enable Schedule?')
-                    ->hintIconTooltip('This schedule will be executed automatically if enabled.')
+                    ->label('Zeitplan aktivieren?')
+                    ->hintIconTooltip('Dieser Zeitplan wird automatisch ausgeführt, wenn er aktiviert ist.')
                     ->hintIcon('tabler-question-mark')
                     ->inline(false)
                     ->columnSpan([
@@ -141,7 +141,7 @@ class ScheduleResource extends Resource
                         'default' => 2,
                         'lg' => 1,
                     ])
-                    ->label('Hour')
+                    ->label('Stunde')
                     ->default('*')
                     ->required(),
                 TextInput::make('cron_day_of_month')
@@ -149,7 +149,7 @@ class ScheduleResource extends Resource
                         'default' => 2,
                         'lg' => 1,
                     ])
-                    ->label('Day of Month')
+                    ->label('Tag des Monats')
                     ->default('*')
                     ->required(),
                 TextInput::make('cron_month')
@@ -157,7 +157,7 @@ class ScheduleResource extends Resource
                         'default' => 2,
                         'lg' => 1,
                     ])
-                    ->label('Month')
+                    ->label('Monat')
                     ->default('*')
                     ->required(),
                 TextInput::make('cron_day_of_week')
@@ -165,10 +165,10 @@ class ScheduleResource extends Resource
                         'default' => 2,
                         'lg' => 1,
                     ])
-                    ->label('Day of Week')
+                    ->label('Tag der Woche')
                     ->default('*')
                     ->required(),
-                Section::make('Presets')
+                Section::make('Vorlagen')
                     ->hiddenOn('view')
                     ->columns(1)
                     ->schema([
@@ -325,13 +325,13 @@ class ScheduleResource extends Resource
                     ->boolean()
                     ->sortable(),
                 DateTimeColumn::make('last_run_at')
-                    ->label('Last run')
-                    ->placeholder('Never')
+                    ->label('Letzte Ausführung')
+                    ->placeholder('Nie')
                     ->since()
                     ->sortable(),
                 DateTimeColumn::make('next_run_at')
-                    ->label('Next run')
-                    ->placeholder('Never')
+                    ->label('Nächste Ausführung')
+                    ->placeholder('Nie')
                     ->since()
                     ->sortable()
                     ->state(fn (Schedule $schedule) => $schedule->is_active ? $schedule->next_run_at : null),
@@ -372,7 +372,7 @@ class ScheduleResource extends Resource
             return Utilities::getScheduleNextRunDate($minute, $hour, $dayOfMonth, $month, $dayOfWeek);
         } catch (Exception) {
             Notification::make()
-                ->title('The cron data provided does not evaluate to a valid expression')
+                ->title('Die cron-Daten, die Sie bereitgestellt haben, sind keine gültige Ausdrucksauswertung')
                 ->danger()
                 ->send();
 

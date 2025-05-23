@@ -78,10 +78,10 @@ class BackupResource extends Resource
                     ->columnSpanFull(),
                 TextArea::make('ignored')
                     ->columnSpanFull()
-                    ->label('Ignored Files & Directories'),
+                    ->label('Ignorierte Dateien & Verzeichnisse'),
                 Toggle::make('is_locked')
-                    ->label('Lock?')
-                    ->helperText('Prevents this backup from being deleted until explicitly unlocked.'),
+                    ->label('Sperren?')
+                    ->helperText('Verhindert das Löschen dieses Backups, bis es explizit entsperrt wird.'),
             ]);
     }
 
@@ -95,9 +95,9 @@ class BackupResource extends Resource
                 TextColumn::make('name')
                     ->searchable(),
                 BytesColumn::make('bytes')
-                    ->label('Size'),
+                    ->label('Größe'),
                 DateTimeColumn::make('created_at')
-                    ->label('Created')
+                    ->label('Erstellt')
                     ->since()
                     ->sortable(),
                 TextColumn::make('status')
@@ -105,7 +105,7 @@ class BackupResource extends Resource
                     ->badge(),
                 IconColumn::make('is_locked')
                     ->visibleFrom('md')
-                    ->label('Lock Status')
+                    ->label('Sperren Status')
                     ->trueIcon('tabler-lock')
                     ->falseIcon('tabler-lock-open'),
             ])
@@ -114,7 +114,7 @@ class BackupResource extends Resource
                     Action::make('lock')
                         ->icon(fn (Backup $backup) => !$backup->is_locked ? 'tabler-lock' : 'tabler-lock-open')
                         ->authorize(fn () => auth()->user()->can(Permission::ACTION_BACKUP_DELETE, $server))
-                        ->label(fn (Backup $backup) => !$backup->is_locked ? 'Lock' : 'Unlock')
+                        ->label(fn (Backup $backup) => !$backup->is_locked ? 'Sperren' : 'Entsperren')
                         ->action(fn (BackupController $backupController, Backup $backup, Request $request) => $backupController->toggleLock($request, $server, $backup))
                         ->visible(fn (Backup $backup) => $backup->status === BackupStatus::Successful),
                     Action::make('download')

@@ -25,10 +25,10 @@ final class GithubProvider extends OAuthProvider
     public function getSetupSteps(): array
     {
         return array_merge([
-            Step::make('Register new Github OAuth App')
+            Step::make('Neue Github OAuth-App registrieren')
                 ->schema([
                     Placeholder::make('')
-                        ->content(new HtmlString(Blade::render('<p>Visit the <x-filament::link href="https://github.com/settings/developers" target="_blank">Github Developer Dashboard</x-filament::link>, go to <b>OAuth Apps</b> and click on <b>New OAuth App</b>.</p><p>Enter an <b>Application name</b> (e.g. your panel name), set <b>Homepage URL</b> to your panel url and enter the below url as <b>Authorization callback URL</b>.</p>'))),
+                        ->content(new HtmlString(Blade::render('<p>Besuchen Sie den <x-filament::link href="https://github.com/settings/developers" target="_blank">Github Developer Dashboard</x-filament::link>, gehen Sie zu <b>OAuth Apps</b> und klicken Sie auf <b>New OAuth App</b>.</p><p>Geben Sie einen <b>Anwendungsnamen</b> (z.B. Ihr Panel-Name) ein, setzen Sie <b>Homepage URL</b> auf Ihre Panel-URL und geben Sie die folgende URL als <b>Authorization callback URL</b> ein.</p>'))),
                     TextInput::make('_noenv_callback')
                         ->label('Authorization callback URL')
                         ->dehydrated()
@@ -36,12 +36,12 @@ final class GithubProvider extends OAuthProvider
                         ->hintAction(fn (string $state) => request()->isSecure() ? CopyAction::make()->copyable($state) : null)
                         ->default(fn () => url('/auth/oauth/callback/github')),
                     Placeholder::make('')
-                        ->content(new HtmlString('<p>When you filled all fields click on <b>Register application</b>.</p>')),
+                        ->content(new HtmlString('<p>Wenn Sie alle Felder ausgefüllt haben, klicken Sie auf <b>Register application</b>.</p>')),
                 ]),
-            Step::make('Create Client Secret')
+            Step::make('Client Secret erstellen')
                 ->schema([
                     Placeholder::make('')
-                        ->content(new HtmlString('<p>Once you registered your app, generate a new <b>Client Secret</b>.</p><p>You will also need the <b>Client ID</b>.</p>')),
+                        ->content(new HtmlString('<p>Wenn Sie Ihre App registriert haben, erstellen Sie einen neuen <b>Client Secret</b>.</p><p>Sie benötigen auch die <b>Client ID</b>.</p>')),
                 ]),
         ], parent::getSetupSteps());
     }

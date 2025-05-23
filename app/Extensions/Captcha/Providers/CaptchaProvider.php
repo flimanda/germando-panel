@@ -26,7 +26,7 @@ abstract class CaptchaProvider
     {
         if (array_key_exists($this->getId(), static::$providers)) {
             if (!$this->app->runningUnitTests()) {
-                logger()->warning("Tried to create duplicate Captcha provider with id '{$this->getId()}'");
+                logger()->warning("Versuch, einen doppelten Captcha-Provider mit der ID '{$this->getId()}' zu erstellen");
             }
 
             return;

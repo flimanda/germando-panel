@@ -29,10 +29,10 @@ class TasksRelationManager extends RelationManager
     private function getActionOptions(bool $full = true): array
     {
         return [
-            Task::ACTION_POWER => $full ? 'Send power action' : 'Power action',
-            Task::ACTION_COMMAND => $full ? 'Send command' : 'Command',
-            Task::ACTION_BACKUP => $full ? 'Create backup' : 'Files to ignore',
-            Task::ACTION_DELETE_FILES => $full ? 'Delete files' : 'Files to delete',
+            Task::ACTION_POWER => $full ? 'Sende Leistungsbefehl' : 'Leistungsbefehl',
+            Task::ACTION_COMMAND => $full ? 'Sende Befehl' : 'Befehl',
+            Task::ACTION_BACKUP => $full ? 'Erstelle Backup' : 'Dateien zu ignorieren',
+            Task::ACTION_DELETE_FILES => $full ? 'Lösche Dateien' : 'Dateien zu löschen',
         ];
     }
 
@@ -54,11 +54,11 @@ class TasksRelationManager extends RelationManager
                 ->label(fn (Get $get) => $this->getActionOptions(false)[$get('action')] ?? 'Payload'),
             Select::make('payload')
                 ->visible(fn (Get $get) => $get('action') === Task::ACTION_POWER)
-                ->label('Power Action')
+                ->label('Leistungsbefehl')
                 ->required()
                 ->options([
                     'start' => 'Start',
-                    'restart' => 'Restart',
+                    'restart' => 'Neustart',
                     'stop' => 'Stop',
                     'kill' => 'Kill',
                 ])
@@ -130,7 +130,7 @@ class TasksRelationManager extends RelationManager
             ->headerActions([
                 CreateAction::make()
                     ->createAnother(false)
-                    ->label(fn () => $schedule->tasks()->count() >= config('panel.client_features.schedules.per_schedule_task_limit', 10) ? 'Task Limit Reached' : 'Create Task')
+                    ->label(fn () => $schedule->tasks()->count() >= config('panel.client_features.schedules.per_schedule_task_limit', 10) ? 'Aufgabenlimit erreicht' : 'Aufgabe erstellen')
                     ->disabled(fn () => $schedule->tasks()->count() >= config('panel.client_features.schedules.per_schedule_task_limit', 10))
                     ->form($this->getTaskForm($schedule))
                     ->action(function ($data) use ($schedule) {

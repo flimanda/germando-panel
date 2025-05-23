@@ -29,7 +29,7 @@ abstract class FeatureProvider
     {
         if (array_key_exists($this->getId(), static::$providers)) {
             if (!$this->app->runningUnitTests()) {
-                logger()->warning("Tried to create duplicate Feature provider with id '{$this->getId()}'");
+                logger()->warning("Versuch, einen doppelten Feature-Provider mit der ID '{$this->getId()}' zu erstellen");
             }
 
             return;

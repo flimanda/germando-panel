@@ -20,7 +20,7 @@ class HelpWidget extends Widget
                 CreateAction::make()
                     ->label(trans('admin/dashboard.sections.intro-help.button_docs'))
                     ->icon('tabler-speedboat')
-                    ->url('https://pelican.dev/docs', true),
+                    ->url('https://docs.flimando.com/', true),
             ],
         ];
     }

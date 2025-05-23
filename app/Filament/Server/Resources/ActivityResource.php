@@ -30,9 +30,9 @@ class ActivityResource extends Resource
 {
     protected static ?string $model = ActivityLog::class;
 
-    protected static ?string $modelLabel = 'Activity';
+    protected static ?string $modelLabel = 'Aktivität';
 
-    protected static ?string $pluralModelLabel = 'Activity';
+    protected static ?string $pluralModelLabel = 'Aktivitäten';
 
     protected static ?int $navigationSort = 8;
 
@@ -55,7 +55,7 @@ class ActivityResource extends Resource
                 TextColumn::make('user')
                     ->state(function (ActivityLog $activityLog) use ($server) {
                         if (!$activityLog->actor instanceof User) {
-                            return $activityLog->actor_id === null ? 'System' : 'Deleted user';
+                            return $activityLog->actor_id === null ? 'System' : 'Gelöschter Benutzer';
                         }
 
                         $user = $activityLog->actor->username;

@@ -38,7 +38,7 @@ class MinecraftEula extends FeatureProvider
         return Action::make($this->getId())
             ->requiresConfirmation()
             ->modalHeading('Minecraft EULA')
-            ->modalDescription(new HtmlString(Blade::render('By pressing "I Accept" below you are indicating your agreement to the <x-filament::link href="https://minecraft.net/eula" target="_blank">Minecraft EULA </x-filament::link>.')))
+            ->modalDescription(new HtmlString(Blade::render('Durch das Drücken von "I Accept" unten bestätigen Sie Ihre Zustimmung zu den <x-filament::link href="https://minecraft.net/eula" target="_blank">Minecraft EULA </x-filament::link>.')))
             ->modalSubmitActionLabel('I Accept')
             ->action(function (DaemonFileRepository $fileRepository, DaemonPowerRepository $powerRepository) {
                 try {
@@ -50,13 +50,13 @@ class MinecraftEula extends FeatureProvider
                     $powerRepository->setServer($server)->send('restart');
 
                     Notification::make()
-                        ->title('Minecraft EULA accepted')
-                        ->body('Server will restart now.')
+                        ->title('Minecraft EULA akzeptiert')
+                        ->body('Server wird jetzt neustarten.')
                         ->success()
                         ->send();
                 } catch (Exception $exception) {
                     Notification::make()
-                        ->title('Could not accept Minecraft EULA')
+                        ->title('Konnte Minecraft EULA nicht akzeptieren')
                         ->body($exception->getMessage())
                         ->danger()
                         ->send();

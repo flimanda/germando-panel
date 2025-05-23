@@ -151,21 +151,21 @@ class Console extends Page
         $server = Filament::getTenant();
 
         return [
-            Action::make('start')
+            Action::make('Start')
                 ->color('primary')
                 ->size(ActionSize::ExtraLarge)
                 ->dispatch('setServerState', ['state' => 'start', 'uuid' => $server->uuid])
                 ->authorize(fn () => auth()->user()->can(Permission::ACTION_CONTROL_START, $server))
                 ->disabled(fn () => $server->isInConflictState() || !$this->status->isStartable())
                 ->icon('tabler-player-play-filled'),
-            Action::make('restart')
+            Action::make('Neustart')
                 ->color('gray')
                 ->size(ActionSize::ExtraLarge)
                 ->dispatch('setServerState', ['state' => 'restart', 'uuid' => $server->uuid])
                 ->authorize(fn () => auth()->user()->can(Permission::ACTION_CONTROL_RESTART, $server))
                 ->disabled(fn () => $server->isInConflictState() || !$this->status->isRestartable())
                 ->icon('tabler-reload'),
-            Action::make('stop')
+            Action::make('Stop')
                 ->color('danger')
                 ->size(ActionSize::ExtraLarge)
                 ->dispatch('setServerState', ['state' => 'stop', 'uuid' => $server->uuid])
@@ -173,9 +173,9 @@ class Console extends Page
                 ->hidden(fn () => $this->status->isStartingOrStopping() || $this->status->isKillable())
                 ->disabled(fn () => $server->isInConflictState() || !$this->status->isStoppable())
                 ->icon('tabler-player-stop-filled'),
-            Action::make('kill')
+            Action::make('Kill')
                 ->color('danger')
-                ->tooltip('This can result in data corruption and/or data loss!')
+                ->tooltip('Dies kann zu Datenbeschädigungen und/oder Datenverlust führen!')
                 ->size(ActionSize::ExtraLarge)
                 ->dispatch('setServerState', ['state' => 'kill', 'uuid' => $server->uuid])
                 ->authorize(fn () => auth()->user()->can(Permission::ACTION_CONTROL_STOP, $server))

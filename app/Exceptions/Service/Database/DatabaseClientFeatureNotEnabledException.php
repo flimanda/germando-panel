@@ -8,6 +8,6 @@ class DatabaseClientFeatureNotEnabledException extends PanelException
 {
     public function __construct()
     {
-        parent::__construct('Client database creation is not enabled in this Panel.');
+        parent::__construct('Client-Datenbank-Erstellung ist in diesem Panel nicht aktiviert.');
     }
 }

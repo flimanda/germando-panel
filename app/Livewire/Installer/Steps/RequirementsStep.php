@@ -19,12 +19,12 @@ class RequirementsStep
 
         $fields = [
             Section::make('PHP Version')
-                ->description(self::MIN_PHP_VERSION . ' or newer')
+                ->description(self::MIN_PHP_VERSION . ' oder neuer')
                 ->icon($correctPhpVersion ? 'tabler-check' : 'tabler-x')
                 ->iconColor($correctPhpVersion ? 'success' : 'danger')
                 ->schema([
                     Placeholder::make('')
-                        ->content('Your PHP Version is ' . PHP_VERSION . '.'),
+                        ->content('Ihre PHP-Version ist ' . PHP_VERSION . '.'),
                 ]),
         ];
 
@@ -47,10 +47,10 @@ class RequirementsStep
             ->iconColor($allExtensionsInstalled ? 'success' : 'danger')
             ->schema([
                 Placeholder::make('')
-                    ->content('All needed PHP Extensions are installed.')
+                    ->content('Alle benötigten PHP-Erweiterungen sind installiert.')
                     ->visible($allExtensionsInstalled),
                 Placeholder::make('')
-                    ->content('The following PHP Extensions are missing: ' . implode(', ', array_keys($phpExtensions, false)))
+                    ->content('Die folgenden PHP-Erweiterungen sind fehlend: ' . implode(', ', array_keys($phpExtensions, false)))
                     ->visible(!$allExtensionsInstalled),
             ]);
 
@@ -60,30 +60,30 @@ class RequirementsStep
         ];
         $correctFolderPermissions = !in_array(false, $folderPermissions);
 
-        $fields[] = Section::make('Folder Permissions')
+        $fields[] = Section::make('Ordnerberechtigungen')
             ->description(implode(', ', array_keys($folderPermissions)))
             ->icon($correctFolderPermissions ? 'tabler-check' : 'tabler-x')
             ->iconColor($correctFolderPermissions ? 'success' : 'danger')
             ->schema([
                 Placeholder::make('')
-                    ->content('All Folders have the correct permissions.')
+                    ->content('Alle Ordner haben die korrekten Berechtigungen.')
                     ->visible($correctFolderPermissions),
                 Placeholder::make('')
-                    ->content('The following Folders have wrong permissions: ' . implode(', ', array_keys($folderPermissions, false)))
+                    ->content('Die folgenden Ordner haben falsche Berechtigungen: ' . implode(', ', array_keys($folderPermissions, false)))
                     ->visible(!$correctFolderPermissions),
             ]);
 
         return Step::make('requirements')
-            ->label('Server Requirements')
+            ->label('Serveranforderungen')
             ->schema($fields)
             ->afterValidation(function () use ($correctPhpVersion, $allExtensionsInstalled, $correctFolderPermissions) {
                 if (!$correctPhpVersion || !$allExtensionsInstalled || !$correctFolderPermissions) {
                     Notification::make()
-                        ->title('Some requirements are missing!')
+                        ->title('Es fehlen einige Anforderungen!')
                         ->danger()
                         ->send();
 
-                    throw new Halt('Some requirements are missing');
+                    throw new Halt('Es fehlen einige Anforderungen!');
                 }
             });
     }

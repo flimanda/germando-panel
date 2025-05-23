@@ -12,7 +12,7 @@ class ProcessRunnableCommand extends Command
 {
     protected $signature = 'p:schedule:process';
 
-    protected $description = 'Process schedules in the database and determine which are ready to run.';
+    protected $description = 'Verarbeitet Aufträge in der Datenbank und bestimmt, welche ausführbar sind.';
 
     public function handle(ProcessScheduleService $processScheduleService): int
     {

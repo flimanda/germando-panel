@@ -31,7 +31,7 @@ trait EnvironmentWriterTrait
     {
         $path = base_path('.env');
         if (!file_exists($path)) {
-            throw new Exception('Cannot locate .env file, was this software installed correctly?');
+            throw new Exception('Konnte die .env-Datei nicht finden, wurde diese Software korrekt installiert?');
         }
 
         $saveContents = file_get_contents($path);

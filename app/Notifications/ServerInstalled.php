@@ -25,9 +25,9 @@ class ServerInstalled extends Notification implements ShouldQueue
     public function toMail(User $notifiable): MailMessage
     {
         return (new MailMessage())
-            ->greeting('Hello ' . $notifiable->username . '.')
-            ->line('Your server has finished installing and is now ready for you to use.')
+            ->greeting('Hallo ' . $notifiable->username . '.')
+            ->line('Dein Server wurde installiert und ist nun bereit für dich zu verwenden.')
             ->line('Server Name: ' . $this->server->name)
-            ->action('Login and Begin Using', Console::getUrl(panel: 'server', tenant: $this->server));
+            ->action('Login und beginnen zu verwenden', Console::getUrl(panel: 'server', tenant: $this->server));
     }
 }

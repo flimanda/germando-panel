@@ -34,7 +34,7 @@ abstract class ApplicationApiRequest extends FormRequest
     public function authorize(): bool
     {
         if (is_null($this->resource)) {
-            throw new PanelException('An ACL resource must be defined on API requests.');
+            throw new PanelException('Eine ACL-Ressource muss auf API-Anfragen definiert werden.');
         }
 
         /** @var TransientToken|ApiKey $token */

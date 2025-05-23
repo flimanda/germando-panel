@@ -64,7 +64,7 @@ class BackupManager
         $config = $this->getConfig($name);
 
         if (empty($config['adapter'])) {
-            throw new \InvalidArgumentException("Backup disk [$name] does not have a configured adapter.");
+            throw new \InvalidArgumentException("Das Backup-Laufwerk [$name] hat keinen konfigurierten Adapter.");
         }
 
         $adapter = $config['adapter'];
@@ -82,7 +82,7 @@ class BackupManager
             return $instance;
         }
 
-        throw new \InvalidArgumentException("Adapter [$adapter] is not supported.");
+        throw new \InvalidArgumentException("Adapter [$adapter] wird nicht unterstützt.");
     }
 
     /**

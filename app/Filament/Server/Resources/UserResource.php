@@ -130,22 +130,22 @@ class UserResource extends Resource
             ])
             ->actions([
                 DeleteAction::make()
-                    ->label('Remove User')
+                    ->label('Benutzer entfernen')
                     ->hidden(fn (User $user) => auth()->user()->id === $user->id)
                     ->action(function (User $user, SubuserDeletionService $subuserDeletionService) use ($server) {
                         $subuser = $server->subusers->where('user_id', $user->id)->first();
                         $subuserDeletionService->handle($subuser, $server);
 
                         Notification::make()
-                            ->title('User Deleted!')
+                            ->title('Benutzer gelöscht!')
                             ->success()
                             ->send();
                     }),
                 EditAction::make()
-                    ->label('Edit User')
+                    ->label('Benutzer bearbeiten')
                     ->hidden(fn (User $user) => auth()->user()->id === $user->id)
                     ->authorize(fn () => auth()->user()->can(Permission::ACTION_USER_UPDATE, $server))
-                    ->modalHeading(fn (User $user) => 'Editing ' . $user->email)
+                    ->modalHeading(fn (User $user) => 'Bearbeiten ' . $user->email)
                     ->action(function (array $data, SubuserUpdateService $subuserUpdateService, User $user) use ($server) {
                         $subuser = $server->subusers->where('user_id', $user->id)->first();
 
@@ -159,7 +159,7 @@ class UserResource extends Resource
                         $subuserUpdateService->handle($subuser, $server, $permissions);
 
                         Notification::make()
-                            ->title('User Updated!')
+                            ->title('Benutzer aktualisiert!')
                             ->success()
                             ->send();
 
@@ -186,7 +186,7 @@ class UserResource extends Resource
                                     ]),
                                 Actions::make([
                                     Action::make('assignAll')
-                                        ->label('Assign All')
+                                        ->label('Alle zuweisen')
                                         ->action(function (Set $set) use ($permissionsArray) {
                                             $permissions = $permissionsArray;
                                             foreach ($permissions as $key => $value) {

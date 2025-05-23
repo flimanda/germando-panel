@@ -22,18 +22,17 @@ trait RequiresDatabaseMigrations
         $this->getOutput()->writeln('<options=bold>
 | @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ |
 |                                                                              |
-|               Your database has not been properly migrated!                  |
+|          Ihre Datenbank ist nicht ordnungsgemäß migriert worden!             |
 |                                                                              |
 | @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ |</>
 
-You must run the following command to finish migrating your database:
+Sie müssen den folgenden Befehl ausführen, um Ihre Datenbank zu migrieren:
 
   <fg=green;options=bold>php artisan migrate --step --force</>
 
-You will not be able to use the Panel as expected without fixing your
-database state by running the command above.
+Sie können die Panel-Funktionen nicht erwartungsgemäß verwenden, es sei denn, Sie korrigieren den Fehler, indem Sie den obigen Befehl ausführen.
 ');
 
-        $this->getOutput()->error('You must correct the error above before continuing.');
+        $this->getOutput()->error('Sie müssen den obigen Fehler beheben, bevor Sie fortfahren können.');
     }
 }

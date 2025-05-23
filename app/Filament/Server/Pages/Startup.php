@@ -43,7 +43,7 @@ class Startup extends ServerFormPage
                 Hidden::make('previewing')
                     ->default(false),
                 Textarea::make('startup')
-                    ->label('Startup Command')
+                    ->label('Startbefehl')
                     ->columnSpan([
                         'default' => 1,
                         'sm' => 1,
@@ -54,7 +54,7 @@ class Startup extends ServerFormPage
                     ->hintAction(PreviewStartupAction::make('preview'))
                     ->readOnly(),
                 TextInput::make('custom_image')
-                    ->label('Docker Image')
+                    ->label('Docker-Image')
                     ->readOnly()
                     ->visible(fn (Server $server) => !in_array($server->image, $server->egg->docker_images))
                     ->formatStateUsing(fn (Server $server) => $server->image)
@@ -65,7 +65,7 @@ class Startup extends ServerFormPage
                         'lg' => 2,
                     ]),
                 Select::make('image')
-                    ->label('Docker Image')
+                    ->label('Docker-Image')
                     ->live()
                     ->visible(fn (Server $server) => in_array($server->image, $server->egg->docker_images))
                     ->disabled(fn () => !auth()->user()->can(Permission::ACTION_STARTUP_DOCKER_IMAGE, $server))
@@ -80,8 +80,8 @@ class Startup extends ServerFormPage
                         }
 
                         Notification::make()
-                            ->title('Docker image updated')
-                            ->body('Restart the server to use the new image.')
+                            ->title('Docker-Image aktualisiert')
+                            ->body('Starten Sie den Server neu, um das neue Image zu verwenden.')
                             ->success()
                             ->send();
                     })
@@ -97,7 +97,7 @@ class Startup extends ServerFormPage
                         'md' => 2,
                         'lg' => 2,
                     ]),
-                Section::make('Server Variables')
+                Section::make('Server-Variablen')
                     ->schema([
                         Repeater::make('server_variables')
                             ->label('')

@@ -18,17 +18,17 @@ class EnvironmentStep
                 TextInput::make('env_general.APP_NAME')
                     ->label('App Name')
                     ->hintIcon('tabler-question-mark')
-                    ->hintIconTooltip('This will be the Name of your Panel.')
+                    ->hintIconTooltip('Dies wird der Name Ihres Panels sein.')
                     ->required()
                     ->default(config('app.name')),
                 TextInput::make('env_general.APP_URL')
                     ->label('App URL')
                     ->hintIcon('tabler-question-mark')
-                    ->hintIconTooltip('This will be the URL you access your Panel from.')
+                    ->hintIconTooltip('Dies wird der URL sein, über den Sie Ihr Panel erreichen.')
                     ->required()
                     ->default(url('')),
                 Fieldset::make('adminuser')
-                    ->label('Admin User')
+                    ->label('Admin-Benutzer')
                     ->columns(3)
                     ->schema([
                         TextInput::make('user.email')
@@ -37,11 +37,11 @@ class EnvironmentStep
                             ->email()
                             ->placeholder('admin@example.com'),
                         TextInput::make('user.username')
-                            ->label('Username')
+                            ->label('Benutzername')
                             ->required()
                             ->placeholder('admin'),
                         TextInput::make('user.password')
-                            ->label('Password')
+                            ->label('Passwort')
                             ->required()
                             ->password()
                             ->revealable(),

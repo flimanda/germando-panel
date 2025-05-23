@@ -37,8 +37,8 @@ class SuspensionService
 
         // Check if the server is currently being transferred.
         if (!is_null($server->transfer)) {
-            Notification::make()->danger()->title('Failed!')->body('Server is currently being transferred.')->send();
-            throw new ConflictHttpException('Cannot toggle suspension status on a server that is currently being transferred.');
+            Notification::make()->danger()->title('Fehlgeschlagen!')->body('Server wird derzeit übertragen.')->send();
+            throw new ConflictHttpException('Konnte die Suspendierungsstatusänderung für einen Server, der derzeit übertragen wird, nicht durchführen.');
         }
 
         // Update the server's suspension status.

@@ -17,15 +17,15 @@ class DatabaseSettingsCommand extends Command
         'mysql' => 'MySQL',
     ];
 
-    protected $description = 'Configure database settings for the Panel.';
+    protected $description = 'Konfiguriere Datenbank-Einstellungen für das Panel.';
 
     protected $signature = 'p:environment:database
-                            {--driver= : The database driver backend to use.}
-                            {--database= : The database to use.}
-                            {--host= : The connection address for the MySQL/ MariaDB server.}
-                            {--port= : The connection port for the MySQL/ MariaDB server.}
-                            {--username= : Username to use when connecting to the MySQL/ MariaDB server.}
-                            {--password= : Password to use for the MySQL/ MariaDB database.}';
+                            {--driver= : Der Datenbank-Treiber, den Sie verwenden möchten.}
+                            {--database= : Die Datenbank, die Sie verwenden möchten.}
+                            {--host= : Die Verbindungsadresse für den MySQL/MariaDB-Server.}
+                            {--port= : Der Verbindungsport für den MySQL/MariaDB-Server.}
+                            {--username= : Benutzername, der beim Verbinden mit dem MySQL/MariaDB-Server verwendet wird.}
+                            {--password= : Passwort, das zum Verbinden mit dem MySQL/MariaDB-Datenbank verwendet wird.}';
 
     /** @var array<array-key, mixed> */
     protected array $variables = [];
@@ -52,7 +52,7 @@ class DatabaseSettingsCommand extends Command
 
         $selected = config('database.default', 'sqlite');
         $this->variables['DB_CONNECTION'] = $this->option('driver') ?? $this->choice(
-            'Database Driver',
+            'Datenbank-Treiber',
             self::DATABASE_DRIVERS,
             array_key_exists($selected, self::DATABASE_DRIVERS) ? $selected : null
         );
@@ -60,23 +60,23 @@ class DatabaseSettingsCommand extends Command
         if ($this->variables['DB_CONNECTION'] === 'mysql') {
             $this->output->note(trans('commands.database_settings.DB_HOST_note'));
             $this->variables['DB_HOST'] = $this->option('host') ?? $this->ask(
-                'Database Host',
+                'Datenbank-Host',
                 config('database.connections.mysql.host', '127.0.0.1')
             );
 
             $this->variables['DB_PORT'] = $this->option('port') ?? $this->ask(
-                'Database Port',
+                'Datenbank-Port',
                 config('database.connections.mysql.port', 3306)
             );
 
             $this->variables['DB_DATABASE'] = $this->option('database') ?? $this->ask(
-                'Database Name',
+                'Datenbank-Name',
                 config('database.connections.mysql.database', 'panel')
             );
 
             $this->output->note(trans('commands.database_settings.DB_USERNAME_note'));
             $this->variables['DB_USERNAME'] = $this->option('username') ?? $this->ask(
-                'Database Username',
+                'Datenbank-Benutzername',
                 config('database.connections.mysql.username', 'pelican')
             );
 
@@ -87,7 +87,7 @@ class DatabaseSettingsCommand extends Command
             }
 
             if ($askForMySQLPassword) {
-                $this->variables['DB_PASSWORD'] = $this->option('password') ?? $this->secret('Database Password');
+                $this->variables['DB_PASSWORD'] = $this->option('password') ?? $this->secret('Datenbank-Passwort');
             }
 
             try {
@@ -120,23 +120,23 @@ class DatabaseSettingsCommand extends Command
         } elseif ($this->variables['DB_CONNECTION'] === 'mariadb') {
             $this->output->note(trans('commands.database_settings.DB_HOST_note'));
             $this->variables['DB_HOST'] = $this->option('host') ?? $this->ask(
-                'Database Host',
+                'Datenbank-Host',
                 config('database.connections.mariadb.host', '127.0.0.1')
             );
 
             $this->variables['DB_PORT'] = $this->option('port') ?? $this->ask(
-                'Database Port',
+                'Datenbank-Port',
                 config('database.connections.mariadb.port', 3306)
             );
 
             $this->variables['DB_DATABASE'] = $this->option('database') ?? $this->ask(
-                'Database Name',
+                'Datenbank-Name',
                 config('database.connections.mariadb.database', 'panel')
             );
 
             $this->output->note(trans('commands.database_settings.DB_USERNAME_note'));
             $this->variables['DB_USERNAME'] = $this->option('username') ?? $this->ask(
-                'Database Username',
+                'Datenbank-Benutzername',
                 config('database.connections.mariadb.username', 'pelican')
             );
 
@@ -147,7 +147,7 @@ class DatabaseSettingsCommand extends Command
             }
 
             if ($askForMariaDBPassword) {
-                $this->variables['DB_PASSWORD'] = $this->option('password') ?? $this->secret('Database Password');
+                $this->variables['DB_PASSWORD'] = $this->option('password') ?? $this->secret('Datenbank-Passwort');
             }
 
             try {
@@ -179,7 +179,7 @@ class DatabaseSettingsCommand extends Command
             }
         } elseif ($this->variables['DB_CONNECTION'] === 'sqlite') {
             $this->variables['DB_DATABASE'] = $this->option('database') ?? $this->ask(
-                'Database Path',
+                'Datenbank-Pfad',
                 (string) env('DB_DATABASE', 'database.sqlite')
             );
         }

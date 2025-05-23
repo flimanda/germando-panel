@@ -7,9 +7,9 @@ use Illuminate\Console\Command;
 
 class DisableTwoFactorCommand extends Command
 {
-    protected $description = 'Disable two-factor authentication for a specific user in the Panel.';
+    protected $description = 'Deaktiviert die Zwei-Faktor-Authentifizierung für einen bestimmten Benutzer im Panel.';
 
-    protected $signature = 'p:user:disable2fa {--email= : The email of the user to disable 2-Factor for.}';
+    protected $signature = 'p:user:disable2fa {--email= : Die E-Mail-Adresse des Benutzers, dessen Zwei-Faktor-Authentifizierung deaktiviert werden soll.}';
 
     /**
      * Handle command execution process.

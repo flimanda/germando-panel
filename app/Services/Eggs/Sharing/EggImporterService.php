@@ -85,7 +85,7 @@ class EggImporterService
         $tmpPath = $tmpDir->path($info['basename']);
 
         if (!file_put_contents($tmpPath, file_get_contents($url))) {
-            throw new InvalidFileUploadException('Could not write temporary file.');
+            throw new InvalidFileUploadException('Konnte die temporäre Datei nicht schreiben.');
         }
 
         return $this->fromFile(new UploadedFile($tmpPath, $info['basename'], 'application/json'), $egg);
@@ -103,13 +103,13 @@ class EggImporterService
     protected function parseFile(UploadedFile $file): array
     {
         if ($file->getError() !== UPLOAD_ERR_OK) {
-            throw new InvalidFileUploadException('The selected file was not uploaded successfully');
+            throw new InvalidFileUploadException('Die ausgewählte Datei wurde nicht erfolgreich hochgeladen');
         }
 
         try {
             $parsed = json_decode($file->getContent(), true, 512, JSON_THROW_ON_ERROR);
         } catch (\JsonException $exception) {
-            throw new InvalidFileUploadException('Could not read JSON file: ' . $exception->getMessage());
+            throw new InvalidFileUploadException('Konnte die JSON-Datei nicht lesen: ' . $exception->getMessage());
         }
 
         $version = $parsed['meta']['version'] ?? '';

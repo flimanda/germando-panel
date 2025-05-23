@@ -1,6 +1,6 @@
 @props([
 'code' => '400',
-'title' => 'Bad request',
+'title' => 'Ungültige Anfrage',
 'subtitle' => $exception->getMessage(),
 'icon' => 'tabler-exclamation-circle'
 ])

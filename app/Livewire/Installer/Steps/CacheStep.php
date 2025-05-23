@@ -28,9 +28,9 @@ class CacheStep
             ->columns()
             ->schema([
                 ToggleButtons::make('env_cache.CACHE_STORE')
-                    ->label('Cache Driver')
+                    ->label('Cache-Treiber')
                     ->hintIcon('tabler-question-mark')
-                    ->hintIconTooltip('The driver used for caching. We recommend "Filesystem".')
+                    ->hintIconTooltip('Der Treiber, der für das Caching verwendet wird. Wir empfehlen "Filesystem".')
                     ->required()
                     ->inline()
                     ->options(self::CACHE_DRIVERS)
@@ -50,31 +50,31 @@ class CacheStep
                         }
                     }),
                 TextInput::make('env_cache.REDIS_HOST')
-                    ->label('Redis Host')
+                    ->label('Redis-Host')
                     ->placeholder('127.0.0.1')
                     ->hintIcon('tabler-question-mark')
-                    ->hintIconTooltip('The host of your redis server. Make sure it is reachable.')
+                    ->hintIconTooltip('Der Host Ihres Redis-Servers. Stellen Sie sicher, dass er erreichbar ist.')
                     ->required(fn (Get $get) => $get('env_cache.CACHE_STORE') === 'redis')
                     ->default(fn (Get $get) => $get('env_cache.CACHE_STORE') === 'redis' ? config('database.redis.default.host') : null)
                     ->visible(fn (Get $get) => $get('env_cache.CACHE_STORE') === 'redis'),
                 TextInput::make('env_cache.REDIS_PORT')
-                    ->label('Redis Port')
+                    ->label('Redis-Port')
                     ->placeholder('6379')
                     ->hintIcon('tabler-question-mark')
-                    ->hintIconTooltip('The port of your redis server.')
+                    ->hintIconTooltip('Der Port Ihres Redis-Servers.')
                     ->required(fn (Get $get) => $get('env_cache.CACHE_STORE') === 'redis')
                     ->default(fn (Get $get) => $get('env_cache.CACHE_STORE') === 'redis' ? config('database.redis.default.port') : null)
                     ->visible(fn (Get $get) => $get('env_cache.CACHE_STORE') === 'redis'),
                 TextInput::make('env_cache.REDIS_USERNAME')
-                    ->label('Redis Username')
+                    ->label('Redis-Benutzername')
                     ->hintIcon('tabler-question-mark')
-                    ->hintIconTooltip('The name of your redis user. Can be empty')
+                    ->hintIconTooltip('Der Name Ihres Redis-Benutzers. Kann leer sein.')
                     ->default(fn (Get $get) => $get('env_cache.CACHE_STORE') === 'redis' ? config('database.redis.default.username') : null)
                     ->visible(fn (Get $get) => $get('env_cache.CACHE_STORE') === 'redis'),
                 TextInput::make('env_cache.REDIS_PASSWORD')
-                    ->label('Redis Password')
+                    ->label('Redis-Passwort')
                     ->hintIcon('tabler-question-mark')
-                    ->hintIconTooltip('The password for your redis user. Can be empty.')
+                    ->hintIconTooltip('Das Passwort für Ihren Redis-Benutzer. Kann leer sein.')
                     ->password()
                     ->revealable()
                     ->default(fn (Get $get) => $get('env_cache.CACHE_STORE') === 'redis' ? config('database.redis.default.password') : null)
@@ -84,7 +84,7 @@ class CacheStep
                 $driver = $get('env_cache.CACHE_STORE');
 
                 if (!self::testConnection($app, $driver, $get('env_cache.REDIS_HOST'), $get('env_cache.REDIS_PORT'), $get('env_cache.REDIS_USERNAME'), $get('env_cache.REDIS_PASSWORD'))) {
-                    throw new Halt('Redis connection failed');
+                    throw new Halt('Redis-Verbindung fehlgeschlagen');
                 }
 
                 $installer->writeToEnv('env_cache');
@@ -110,7 +110,7 @@ class CacheStep
             $redis->connection()->command('ping');
         } catch (Exception $exception) {
             Notification::make()
-                ->title('Redis connection failed')
+                ->title('Redis-Verbindung fehlgeschlagen')
                 ->body($exception->getMessage())
                 ->danger()
                 ->send();

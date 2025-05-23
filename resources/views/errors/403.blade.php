@@ -1,6 +1,6 @@
 @props([
 'code' => '403',
-'title' => 'Forbidden',
+'title' => 'Verboten',
 'subtitle' => $exception->getMessage(),
 'icon' => 'tabler-exclamation-circle'
 ])

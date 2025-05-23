@@ -44,7 +44,7 @@ class EditSchedule extends EditRecord
                         ->property('name', $record->name)
                         ->log();
                 }),
-            $this->getSaveFormAction()->formId('form')->label('Save'),
+            $this->getSaveFormAction()->formId('form')->label('Speichern'),
             $this->getCancelFormAction()->formId('form'),
         ];
     }

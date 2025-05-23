@@ -53,13 +53,13 @@ class GSLToken extends FeatureProvider
 
         return Action::make($this->getId())
             ->requiresConfirmation()
-            ->modalHeading('Invalid GSL token')
-            ->modalDescription('It seems like your Gameserver Login Token (GSL token) is invalid or has expired.')
-            ->modalSubmitActionLabel('Update GSL Token')
+            ->modalHeading('Ungültiger GSL-Token')
+            ->modalDescription('Es scheint, dass Ihr Gameserver-Login-Token (GSL-Token) ungültig oder abgelaufen ist.')
+            ->modalSubmitActionLabel('GSL-Token aktualisieren')
             ->disabledForm(fn () => !auth()->user()->can(Permission::ACTION_STARTUP_UPDATE, $server))
             ->form([
                 Placeholder::make('info')
-                    ->label(new HtmlString(Blade::render('You can either <x-filament::link href="https://steamcommunity.com/dev/managegameservers" target="_blank">generate a new one</x-filament::link> and enter it below or leave the field blank to remove it completely.'))),
+                    ->label(new HtmlString(Blade::render('Sie können entweder <x-filament::link href="https://steamcommunity.com/dev/managegameservers" target="_blank">ein neues generieren</x-filament::link> und es unten einfügen oder das Feld leer lassen, um es vollständig zu entfernen.'))),
                 TextInput::make('gsltoken')
                     ->label('GSL Token')
                     ->rules([
@@ -106,13 +106,13 @@ class GSLToken extends FeatureProvider
                     $powerRepository->setServer($server)->send('restart');
 
                     Notification::make()
-                        ->title('GSL Token updated')
-                        ->body('Server will restart now.')
+                        ->title('GSL-Token aktualisiert')
+                        ->body('Server wird jetzt neustarten.')
                         ->success()
                         ->send();
                 } catch (Exception $exception) {
                     Notification::make()
-                        ->title('Could not update GSL Token')
+                        ->title('Konnte GSL-Token nicht aktualisieren')
                         ->body($exception->getMessage())
                         ->danger()
                         ->send();

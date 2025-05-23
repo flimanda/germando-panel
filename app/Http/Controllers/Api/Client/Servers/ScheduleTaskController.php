@@ -45,11 +45,11 @@ class ScheduleTaskController extends ClientApiController
     {
         $limit = config('panel.client_features.schedules.per_schedule_task_limit', 10);
         if ($schedule->tasks()->count() >= $limit) {
-            throw new ServiceLimitExceededException("Schedules may not have more than $limit tasks associated with them. Creating this task would put this schedule over the limit.");
+            throw new ServiceLimitExceededException("Pläne können nicht mehr als $limit Aufgaben haben. Das Erstellen dieser Aufgabe würde diesen Plan über den Grenzwert setzen.");
         }
 
         if ($server->backup_limit === 0 && $request->action === 'backup') {
-            throw new HttpForbiddenException("A backup task cannot be created when the server's backup limit is set to 0.");
+            throw new HttpForbiddenException("Eine Sicherungsaufgabe kann nicht erstellt werden, wenn der Server-Sicherungslimit auf 0 gesetzt ist.");
         }
 
         /** @var \App\Models\Task|null $lastTask */
@@ -112,7 +112,7 @@ class ScheduleTaskController extends ClientApiController
         }
 
         if ($server->backup_limit === 0 && $request->action === 'backup') {
-            throw new HttpForbiddenException("A backup task cannot be created when the server's backup limit is set to 0.");
+            throw new HttpForbiddenException("Eine Sicherungsaufgabe kann nicht erstellt werden, wenn der Server-Sicherungslimit auf 0 gesetzt ist.");
         }
 
         $this->connection->transaction(function () use ($request, $schedule, $task) {
@@ -169,7 +169,7 @@ class ScheduleTaskController extends ClientApiController
         }
 
         if (!$request->user()->can(Permission::ACTION_SCHEDULE_UPDATE, $server)) {
-            throw new HttpForbiddenException('You do not have permission to perform this action.');
+            throw new HttpForbiddenException('Sie haben keine Berechtigung, diese Aktion auszuführen.');
         }
 
         $schedule->tasks()

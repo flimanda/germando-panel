@@ -31,13 +31,13 @@ class DaemonAuthenticate
         }
 
         if (is_null($bearer = $request->bearerToken())) {
-            throw new HttpException(401, 'Access to this endpoint must include an Authorization header.', null, ['WWW-Authenticate' => 'Bearer']);
+            throw new HttpException(401, 'Zugriff auf diesen Endpunkt erfordert einen Authorization-Header.', null, ['WWW-Authenticate' => 'Bearer']);
         }
 
         $parts = explode('.', $bearer);
         // Ensure that all the correct parts are provided in the header.
         if (count($parts) !== 2 || empty($parts[0]) || empty($parts[1])) {
-            throw new BadRequestHttpException('The Authorization header provided was not in a valid format.');
+            throw new BadRequestHttpException('Der bereitgestellte Authorization-Header war nicht in einem gültigen Format.');
         }
 
         /** @var Node $node */
@@ -49,6 +49,6 @@ class DaemonAuthenticate
             return $next($request);
         }
 
-        throw new AccessDeniedHttpException('You are not authorized to access this resource.');
+        throw new AccessDeniedHttpException('Sie sind nicht berechtigt, auf diese Ressource zuzugreifen.');
     }
 }

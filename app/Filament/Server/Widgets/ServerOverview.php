@@ -28,8 +28,8 @@ class ServerOverview extends StatsOverviewWidget
                     'class' => 'overflow-x-auto',
                 ]),
             SmallStatBlock::make('CPU', $this->cpuUsage()),
-            SmallStatBlock::make('Memory', $this->memoryUsage()),
-            SmallStatBlock::make('Disk', $this->diskUsage()),
+            SmallStatBlock::make('RAM', $this->memoryUsage()),
+            SmallStatBlock::make('Speicher', $this->diskUsage()),
         ];
     }
 

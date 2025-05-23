@@ -18,14 +18,14 @@ class QueueSettingsCommand extends Command
         'sync' => 'Synchronous',
     ];
 
-    protected $description = 'Configure queue settings for the Panel.';
+    protected $description = 'Konfiguriere Warteschlangeneinstellungen für das Panel.';
 
     protected $signature = 'p:environment:queue
-                            {--driver= : The queue driver backend to use.}
-                            {--redis-host= : Redis host to use for connections.}
-                            {--redis-user= : User used to connect to redis.}
-                            {--redis-pass= : Password used to connect to redis.}
-                            {--redis-port= : Port to connect to redis over.}';
+                            {--driver= : Der Warteschlangentreiber, den Sie verwenden möchten.}
+                            {--redis-host= : Redis-Host, den Sie verwenden möchten.}
+                            {--redis-user= : Benutzer, der zum Verbinden mit Redis verwendet wird.}
+                            {--redis-pass= : Passwort, das zum Verbinden mit Redis verwendet wird.}
+                            {--redis-port= : Port, über den Sie mit Redis verbinden möchten.}';
 
     /**
      * QueueSettingsCommand constructor.
@@ -42,7 +42,7 @@ class QueueSettingsCommand extends Command
     {
         $selected = config('queue.default', 'database');
         $this->variables['QUEUE_CONNECTION'] = $this->option('driver') ?? $this->choice(
-            'Queue Driver',
+            'Warteschlangentreiber',
             self::QUEUE_DRIVERS,
             array_key_exists($selected, self::QUEUE_DRIVERS) ? $selected : null
         );

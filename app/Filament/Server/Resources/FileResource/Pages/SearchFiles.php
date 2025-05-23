@@ -18,7 +18,7 @@ class SearchFiles extends ListRecords
 {
     protected static string $resource = FileResource::class;
 
-    protected static ?string $title = 'Global Search';
+    protected static ?string $title = 'Global Suche';
 
     #[Locked]
     public string $searchTerm;

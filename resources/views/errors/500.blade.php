@@ -1,7 +1,7 @@
 @props([
 'code' => '500',
-'title' => 'Server Error',
-'subtitle' => fn () => auth()->user()?->isRootAdmin() ? $exception->getMessage() : 'Something went wrong.',
+'title' => 'Serverfehler',
+'subtitle' => fn () => auth()->user()?->isRootAdmin() ? $exception->getMessage() : 'Etwas ist schief gelaufen.',
 'icon' => 'tabler-bug'
 ])
 

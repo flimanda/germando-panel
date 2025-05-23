@@ -18,12 +18,12 @@ class PIDLimit extends FeatureProvider
     public function getListeners(): array
     {
         return [
-            'pthread_create failed',
-            'failed to create thread',
-            'unable to create thread',
-            'unable to create native thread',
-            'unable to create new native thread',
-            'exception in thread "craft async scheduler management thread"',
+            'pthread_create fehlgeschlagen',
+            'Threaderstellung fehlgeschlagen',
+            'Thread konnte nicht erstellt werden',
+            'Native Thread konnte nicht erstellt werden',
+            'Neuer Native Thread konnte nicht erstellt werden',
+            'Exception im Thread "craft async scheduler management thread"',
         ];
     }
 
@@ -37,35 +37,34 @@ class PIDLimit extends FeatureProvider
         return Action::make($this->getId())
             ->requiresConfirmation()
             ->icon('tabler-alert-triangle')
-            ->modalHeading(fn () => auth()->user()->isAdmin() ? 'Memory or process limit reached...' : 'Possible resource limit reached...')
+            ->modalHeading(fn () => auth()->user()->isAdmin() ? 'Speicher oder Prozesslimit erreicht...' : 'Möglicherweise ist das Ressourcenlimit erreicht...')
             ->modalDescription(new HtmlString(Blade::render(
                 auth()->user()->isAdmin() ? <<<'HTML'
                     <p>
-                        This server has reached the maximum process or memory limit.
+                        Dieser Server hat das maximale Prozess- oder Speicherlimit erreicht.
                     </p>
                     <p class="mt-4">
-                        Increasing <code>container_pid_limit</code> in the wings
-                        configuration, <code>config.yml</code>, might help resolve
-                        this issue.
+                        Erhöhen von <code>container_pid_limit</code> in der
+                        Konfiguration, <code>config.yml</code>, könnte dieses Problem lösen.
                     </p>
                     <p class="mt-4">
-                        <b>Note: Wings must be restarted for the configuration file changes to take effect</b>
+                        <b>Hinweis: Wings muss neugestartet werden, damit die Änderungen in der Konfigurationsdatei wirksam werden</b>
                     </p>
                 HTML
                 :
                 <<<'HTML'
                     <p>
-                        This server is attempting to use more resources than allocated. Please contact the administrator
-                        and give them the error below.
+                        Dieser Server versucht, mehr Ressourcen zu verwenden als zugewiesen. Bitte kontaktieren Sie den Administrator
+                        und geben Sie ihm den folgenden Fehler an.
                     </p>
                     <p class="mt-4">
                         <code>
-                            pthread_create failed, Possibly out of memory or process/resource limits reached
+                            pthread_create fehlgeschlagen, Möglicherweise ausgelastet oder Prozess/Ressourcenlimit erreicht
                         </code>
                     </p>
                 HTML
             )))
-            ->modalCancelActionLabel('Close')
+            ->modalCancelActionLabel('Schließen')
             ->action(fn () => null);
     }
 

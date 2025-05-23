@@ -25,7 +25,7 @@ class ListBackups extends ListRecords
         return [
             CreateAction::make()
                 ->authorize(fn () => auth()->user()->can(Permission::ACTION_BACKUP_CREATE, $server))
-                ->label(fn () => $server->backups()->count() >= $server->backup_limit ? 'Backup limit reached' : 'Create Backup')
+                ->label(fn () => $server->backups()->count() >= $server->backup_limit ? 'Backup-Grenze erreicht' : 'Backup erstellen')
                 ->disabled(fn () => $server->backups()->count() >= $server->backup_limit)
                 ->color(fn () => $server->backups()->count() >= $server->backup_limit ? 'danger' : 'primary')
                 ->createAnother(false)
@@ -45,15 +45,15 @@ class ListBackups extends ListRecords
                             ->log();
 
                         return Notification::make()
-                            ->title('Backup Created')
-                            ->body($backup->name . ' created.')
+                            ->title('Backup erstellt')
+                            ->body($backup->name . ' erstellt.')
                             ->success()
                             ->send();
                     } catch (HttpException $e) {
                         return Notification::make()
                             ->danger()
-                            ->title('Backup Failed')
-                            ->body($e->getMessage() . ' Try again' . ($e->getHeaders()['Retry-After'] ? ' in ' . $e->getHeaders()['Retry-After'] . ' seconds.' : ''))
+                            ->title('Backup fehlgeschlagen')
+                            ->body($e->getMessage() . ' Versuchen Sie es erneut' . ($e->getHeaders()['Retry-After'] ? ' in ' . $e->getHeaders()['Retry-After'] . ' Sekunden.' : ''))
                             ->send();
                     }
                 }),

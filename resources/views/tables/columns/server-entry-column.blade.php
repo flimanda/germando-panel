@@ -41,19 +41,19 @@
                     <p class="text-xs dark:text-gray-400">{{ $server->formatResource('cpu', type: ServerResourceType::Percentage, limit: true) }}</p>
                 </div>
                 <div>
-                    <p class="text-sm dark:text-gray-400">Memory</p>
+                    <p class="text-sm dark:text-gray-400">RAM</p>
                     <p class="text-md font-semibold">{{ $server->formatResource('memory_bytes') }}</p>
                     <hr class="p-0.5">
                     <p class="text-xs dark:text-gray-400">{{ $server->formatResource('memory', limit: true) }}</p>
                 </div>
                 <div>
-                    <p class="text-sm dark:text-gray-400">Disk</p>
+                    <p class="text-sm dark:text-gray-400">Speicher</p>
                     <p class="text-md font-semibold">{{ $server->formatResource('disk_bytes') }}</p>
                     <hr class="p-0.5">
                     <p class="text-xs dark:text-gray-400">{{ $server->formatResource('disk', limit: true) }}</p>
                 </div>
                 <div class="hidden sm:block">
-                    <p class="text-sm dark:text-gray-400">Network</p>
+                    <p class="text-sm dark:text-gray-400">Netzwerk</p>
                     <hr class="p-0.5">
                     <p class="text-md font-semibold">{{ $server->allocation->address }} </p>
                 </div>

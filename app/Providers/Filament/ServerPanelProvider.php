@@ -37,7 +37,7 @@ class ServerPanelProvider extends PanelProvider
             ->spa()
             ->databaseNotifications()
             ->tenant(Server::class)
-            ->brandName(config('app.name', 'Pelican'))
+            ->brandName(config('app.name', 'Germando'))
             ->brandLogo(config('app.logo'))
             ->brandLogoHeight('2rem')
             ->favicon(config('app.favicon', '/pelican.ico'))
@@ -50,7 +50,7 @@ class ServerPanelProvider extends PanelProvider
                     ->label(fn () => trans('filament-panels::pages/auth/edit-profile.label'))
                     ->url(fn () => EditProfile::getUrl(panel: 'app')),
                 MenuItem::make()
-                    ->label('Server List')
+                    ->label('Server Liste')
                     ->icon('tabler-brand-docker')
                     ->url(fn () => ListServers::getUrl(panel: 'app'))
                     ->sort(6),

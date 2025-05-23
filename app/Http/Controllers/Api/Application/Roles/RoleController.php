@@ -83,7 +83,7 @@ class RoleController extends ApplicationApiController
     public function update(UpdateRoleRequest $request, Role $role): array
     {
         if ($role->isRootAdmin()) {
-            throw new PanelException('Can\'t update root admin role!');
+            throw new PanelException('Kann die Root-Admin-Rolle nicht aktualisieren!');
         }
 
         $role->update($request->validated());
@@ -103,7 +103,7 @@ class RoleController extends ApplicationApiController
     public function delete(DeleteRoleRequest $request, Role $role): Response
     {
         if ($role->isRootAdmin()) {
-            throw new PanelException('Can\'t delete root admin role!');
+            throw new PanelException('Kann die Root-Admin-Rolle nicht löschen!');
         }
 
         $role->delete();
