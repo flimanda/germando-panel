@@ -11,6 +11,6 @@ Mit Container-Isolierung (Docker), Live-Ressourcenüberwachung und umfangreichen
 
 ## Unterstützte Spiele und Serer Games and Servers
 
-Germando unterstützt eine Vielzahl an Spielen und sonstiger Software, die in Form von "Eggs" vom Pelican-/Pterodactylpanel zur verfügung gestellt werden.
+Germando unterstützt eine Vielzahl an Spielen und sonstiger Software, die in Form von "Eggs" vom Pelican-/Pterodactylpanel zur Verfügung gestellt werden.
 
 Made with love in germany<3
